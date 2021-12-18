@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 17, 2021 lúc 08:56 AM
+-- Thời gian đã tạo: Th12 18, 2021 lúc 10:40 AM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
 -- Phiên bản PHP: 8.0.12
 
@@ -34,7 +34,7 @@ CREATE TABLE `bills` (
   `employee_id` int(11) NOT NULL,
   `coupon_id` int(11) NOT NULL,
   `status_bills` tinyint(1) NOT NULL DEFAULT 1,
-  `processing_status` tinyint(1) NOT NULL DEFAULT 1,
+  `processing_status` tinyint(1) NOT NULL DEFAULT 0,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

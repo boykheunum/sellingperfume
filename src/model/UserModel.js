@@ -37,7 +37,7 @@ Users.GetAllUser = (err, result) => {
 }
 
 Users.DeleteUser = (err, result, id) => {
-    db.query("UPDATE user SET status_user WHERE user_id = ?", [0, id], (err, res) => {
+    db.query("UPDATE user SET status_user = ? WHERE user_id = ?", [0, id], (err, res) => {
         if (err) {
             result(err, null);
             return;

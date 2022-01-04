@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 18, 2021 lúc 10:40 AM
+-- Thời gian đã tạo: Th1 04, 2022 lúc 02:42 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 8.0.12
+-- Phiên bản PHP: 7.4.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `bills` (
-  `bills_id` int(11) NOT NULL,
+  `bill_id` int(11) NOT NULL,
   `bills_date` date NOT NULL,
   `totalmoney` float NOT NULL,
   `employee_id` int(11) NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE `bill_details` (
   `detail_quantily` int(11) NOT NULL,
   `detail_cost` float NOT NULL,
   `detail_price` float NOT NULL,
-  `detail_status` tinyint(1) NOT NULL DEFAULT 1
+  `detail_status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -70,7 +70,8 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`category_id`, `category_name`, `state`) VALUES
-(0, 'Female', 0);
+(1, 'Female', 0),
+(2, 'hhh', 1);
 
 -- --------------------------------------------------------
 
@@ -154,6 +155,13 @@ CREATE TABLE `store_info` (
   `store_address` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `store_info`
+--
+
+INSERT INTO `store_info` (`store_id`, `store_name`, `lat`, `lng`, `store_phone`, `store_email`, `store_address`) VALUES
+(1, 'Bán nước hoa', 21.038334607105465, 105.8088702693146, '0978456214', 'nuochoa@gmail.com', 'Thành phố Hà Nội.');
+
 -- --------------------------------------------------------
 
 --
@@ -175,6 +183,15 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Đang đổ dữ liệu cho bảng `user`
+--
+
+INSERT INTO `user` (`user_id`, `username`, `password`, `name`, `birthday`, `phone`, `email`, `address`, `avatar`, `sex`, `status_user`) VALUES
+(1, '[value-2]', '[value-3]', '[value-4]', '0000-00-00', '[value-6]', '[value-7]', '[value-8]', '[value-9]', 0, 1),
+(2, '1jkhh', 'hjhjh', '', '2014-12-10', '014755555', '', '', '', 0, 1),
+(3, '01', '?', '?', '2000-10-10', '?', '?', '?', '?', 1, 1);
+
+--
 -- Chỉ mục cho các bảng đã đổ
 --
 
@@ -182,7 +199,7 @@ CREATE TABLE `user` (
 -- Chỉ mục cho bảng `bills`
 --
 ALTER TABLE `bills`
-  ADD PRIMARY KEY (`bills_id`),
+  ADD PRIMARY KEY (`bill_id`),
   ADD KEY `employee_id` (`employee_id`,`coupon_id`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `coupon_id` (`coupon_id`);
@@ -243,10 +260,58 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT cho bảng `bills`
+--
+ALTER TABLE `bills`
+  MODIFY `bill_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `bill_details`
+--
+ALTER TABLE `bill_details`
+  MODIFY `bill_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `coupons`
+--
+ALTER TABLE `coupons`
+  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `employees`
+--
+ALTER TABLE `employees`
+  MODIFY `employee_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `positions`
+--
+ALTER TABLE `positions`
+  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `products`
+--
+ALTER TABLE `products`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT cho bảng `store_info`
 --
 ALTER TABLE `store_info`
-  MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `user`
+--
+ALTER TABLE `user`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -264,8 +329,8 @@ ALTER TABLE `bills`
 -- Các ràng buộc cho bảng `bill_details`
 --
 ALTER TABLE `bill_details`
-  ADD CONSTRAINT `bill_details_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`),
-  ADD CONSTRAINT `bill_details_ibfk_2` FOREIGN KEY (`bill_id`) REFERENCES `bills` (`bills_id`);
+  ADD CONSTRAINT `bill_details_ibfk_1` FOREIGN KEY (`bill_id`) REFERENCES `bills` (`bill_id`),
+  ADD CONSTRAINT `bill_details_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`);
 
 --
 -- Các ràng buộc cho bảng `employees`

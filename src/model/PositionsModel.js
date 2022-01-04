@@ -39,7 +39,7 @@ Positions.DeletePosition = (err, result, id) => {
 }
 
 Positions.SearchBillDetalById = (err, result, id) => {
-    db.query("SELECT * FROM positions WHERE bill_idposition_id = ?", [id],
+    db.query("SELECT * FROM positions WHERE position_id = ?", [id],
         (err, res) => {
             if (err) {
                 result(err, null);

@@ -10,7 +10,7 @@ const BillDetails = billdetail => {
 }
 
 BillDetails.AddBillDeltail = (err, result, billdetail) => {
-    db.query("INSERT INTO `bill_details`(bill_id, product_id, detail_quantily, detail_cost, detail_price) VALUES (?,?,?,?,?)", [billdetail.bill_id, billdetail.product_id, billdetail.detail_quantily, billdetail.detail_cost, billdetail.detail_price],
+    db.query("INSERT INTO bill_details(bill_id, product_id, detail_quantily, detail_cost, detail_price) VALUES (?,?,?,?,?)", [billdetail.bill_id, billdetail.product_id, billdetail.detail_quantily, billdetail.detail_cost, billdetail.detail_price],
         (err, res) => {
             if (err) {
                 result(err, null);

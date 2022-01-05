@@ -6,6 +6,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 require("./src/routes/StoreInfo")(app);
+require("./src/routes/Categories")(app);
 
 app.get("/", (req, res) => {
 

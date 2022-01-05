@@ -14,7 +14,7 @@ const Users = user => {
     this.status_user = user.status_user;
 }
 
-Users.AddUser = (result, user) => {
+Users.AddUser = (user, result) => {
     db.query("INSERT INTO user(username, password, name, birthday, phone, email, address, avatar, sex ) VALUES (?,?,?,?,?,?,?,?,?)", [user.username, user.password, user.name, user.birthday, user.phone, user.email, user.address, user.avatar, user.sex],
         (err, res) => {
             if (err) {
@@ -36,7 +36,7 @@ Users.GetAllUser = (result) => {
         })
 }
 
-Users.DeleteUser = (result, id) => {
+Users.DeleteUser = (id, result) => {
     db.query("UPDATE user SET status_user = ? WHERE user_id = ?", [0, id], (err, res) => {
         if (err) {
             result(err, null);
@@ -57,7 +57,7 @@ Users.UpdateUser = (user, id, result) => {
         });
 }
 
-Users.SearchUserById = (result, id) => {
+Users.SearchUserById = (id, result) => {
     db.query("SELECT * FROM user WHERE user_id= ?", [id],
         (err, res) => {
             if (err) {

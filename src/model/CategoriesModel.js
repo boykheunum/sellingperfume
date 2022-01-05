@@ -18,7 +18,7 @@ Categories.AddCategory = (category, result) => {
 }
 
 Categories.GetAllCategory = (result) => {
-    db.query("SELECT categories(category_id, category_name)  FROM categories",
+    db.query("SELECT * FROM categories",
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -50,7 +50,7 @@ Categories.UpdateCategory = (category, id, result) => {
         });
 }
 
-Categories.SearchCategoriesById = (result, id) => {
+Categories.SearchCategoriesById = (id, result) => {
     db.query("SELECT * FROM categories WHERE category_id= ?", [id],
         (err, res) => {
             if (err) {

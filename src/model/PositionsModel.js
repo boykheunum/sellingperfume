@@ -6,7 +6,7 @@ const Positions = position => {
     this.status = position.status;
 }
 
-Positions.AddPosition = (result, position) => {
+Positions.AddPosition = (position, result) => {
     db.query("INSERT INTO positions(position_name) VALUES (?)", [position.position_name],
         (err, res) => {
             if (err) {
@@ -28,7 +28,7 @@ Positions.GetAllPositions = (result) => {
         })
 }
 
-Positions.DeletePosition = (result, id) => {
+Positions.DeletePosition = (id,result) => {
     db.query("UPDATE positions SET status=? WHERE position_id = ?", [0, id], (err, res) => {
         if (err) {
             result(err, null);
@@ -38,7 +38,7 @@ Positions.DeletePosition = (result, id) => {
     })
 }
 
-Positions.SearchBillDetalById = (result, id) => {
+Positions.SearchBillDetalById = (id, result) => {
     db.query("SELECT * FROM positions WHERE position_id = ?", [id],
         (err, res) => {
             if (err) {
@@ -49,7 +49,7 @@ Positions.SearchBillDetalById = (result, id) => {
         })
 }
 
-Positions.UpdatePosition = (result, id, position) => {
+Positions.UpdatePosition = ( id, position,result) => {
     db.query("UPDATE positions SET position_name=? WHERE position_id=?", [position.name,id],
         (err, res) => {
             if (err) {

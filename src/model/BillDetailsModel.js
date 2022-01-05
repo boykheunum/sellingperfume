@@ -31,7 +31,7 @@ BillDetails.GetAllBillDetails = (result) => {
         })
 }
 
-BillDetails.SearchBillDetalById = (result, id) => {
+BillDetails.SearchBillDetalById = (id, result) => {
     db.query("SELECT * FROM bill_details WHERE bill_id = ?", [id],
         (err, res) => {
             if (err) {

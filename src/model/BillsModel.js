@@ -33,8 +33,8 @@ Bills.GetAllBills = (result) => {
         })
 }
 
-Bills.DeleteBill = (result, id) => {
-    db.query("UPDATE bills SET status_bills=? WHERE bills_id = ?", [0, id],
+Bills.DeleteBill = (userId, result) => {
+    db.query("UPDATE bills SET status_bills=? WHERE bills_id = ?", [0, userId],
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -44,7 +44,7 @@ Bills.DeleteBill = (result, id) => {
         })
 }
 
-Bills.SearchByUserId = (result, userId) => {
+Bills.SearchByUserId = (userId, result) => {
     db.query("SELECT * FROM bills WHERE user_id = ?", [userId],
         (err, res) => {
             if (err) {

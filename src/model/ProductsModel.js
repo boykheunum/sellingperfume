@@ -13,7 +13,7 @@ const Products = product => {
     this.state = product.state;
 }
 
-Products.AddProduct = (result, product) => {
+Products.AddProduct = (product, result) => {
     db.query("INSERT INTO products(category_id, product_name, price, importprice, image, description, quantity, date) VALUES (?,?,?,?,?,?,?,?)", [product.category_id, product.product_name, product.price, product.importprice, product.image, product.description, product.quantity, product.date],
         (err, res) => {
             if (err) {
@@ -44,7 +44,7 @@ Products.DeleteProducts = (result, id) => {
     })
 }
 
-Products.UpdateProduct = (result, id, product) => {
+Products.UpdateProduct = (id, product, result) => {
     db.query("UPDATE products SET category_id=?,product_name=?,price=?,importprice=?,image=?,description=?,quantity=?,date=? WHERE product_id= ?", [product.category_id, product.product_name, product.price, product.importprice, product.image, product.description, product.quantity, product.date, product.state, id], (err, res) => {
         if (err) {
             result(err, null);
@@ -54,8 +54,8 @@ Products.UpdateProduct = (result, id, product) => {
     })
 }
 
-Products.SearchProductById = (result, id) => {
-    db.query("SELECT * FROM products WHERE id=?", [id], (err, result) => {
+Products.SearchProductById = (id, result) => {
+    db.query("SELECT * FROM products WHERE id=?", [id], (err, res) => {
         if (err) {
             result(err, null);
             return;
@@ -64,8 +64,8 @@ Products.SearchProductById = (result, id) => {
     })
 }
 
-Products.SearchProductByName = (result, name) => {
-    db.query("SELECT * FROM products WHERE id=?", [name], (err, result) => {
+Products.SearchProductByName = (name,result) => {
+    db.query("SELECT * FROM products WHERE id=?", [name], (err, res) => {
         if (err) {
             result(err, null);
             return;

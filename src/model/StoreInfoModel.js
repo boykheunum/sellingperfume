@@ -10,7 +10,7 @@ const StoreInfo = storeinfo => {
     this.store_address = storeinfo.store_address;
 }
 
-StoreInfo.AddStore = (result, storeinfo) => {
+StoreInfo.AddStore = (storeinfo, result) => {
     db.query("INSERT INTO store_info(store_name, lat, lng, store_phone, store_email, store_address) VALUES (?,?,?,?,?,?)", [storeinfo.store_name, storeinfo.lat, storeinfo.lng, storeinfo.store_phone, storeinfo.store_email, storeinfo.store_address],
         (err, res) => {
             if (err) {

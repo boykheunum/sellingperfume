@@ -10,7 +10,7 @@ const Coupons = coupon => {
     this.proviso = coupon.proviso;
 }
 
-Coupons.AddCoupon = (result, coupon) => {
+Coupons.AddCoupon = (coupon, result) => {
     db.query("INSERT INTO coupons(value, quantity, manufacturing_date, expiry_date, discount_type, proviso) VALUES (?,?,?,?,?,?)", [coupon.value, coupon.quantity, coupon.manufacturing_date, coupon.expiry_date, coupon.discount_type, coupon.proviso],
         (err, res) => {
             if (err) {
@@ -32,7 +32,7 @@ Coupons.GetAllCoupon = (result) => {
         })
 }
 
-Coupons.DeleteCoupon = (result, id) => {
+Coupons.DeleteCoupon = (id, result) => {
     db.query("UPDATE coupons SET state=? WHERE coupon_id = ?", [0, id], (err, res) => {
         if (err) {
             result(err, null);
@@ -42,7 +42,7 @@ Coupons.DeleteCoupon = (result, id) => {
     })
 }
 
-Coupons.SearchCouponsById = (result, id) => {
+Coupons.SearchCouponsById = (id, result) => {
     db.query("SELECT * FROM coupons WHERE coupon_id = ?", [id],
         (err, res) => {
             if (err) {

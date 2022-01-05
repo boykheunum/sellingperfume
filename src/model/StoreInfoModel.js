@@ -10,7 +10,7 @@ const StoreInfo = storeinfo => {
     this.store_address = storeinfo.store_address;
 }
 
-StoreInfo.AddStore = (err, result, storeinfo) => {
+StoreInfo.AddStore = (result, storeinfo) => {
     db.query("INSERT INTO store_info(store_name, lat, lng, store_phone, store_email, store_address) VALUES (?,?,?,?,?,?)", [storeinfo.store_name, storeinfo.lat, storeinfo.lng, storeinfo.store_phone, storeinfo.store_email, storeinfo.store_address],
         (err, res) => {
             if (err) {
@@ -21,29 +21,32 @@ StoreInfo.AddStore = (err, result, storeinfo) => {
         })
 }
 
-StoreInfo.GetAllStore = (err, result) => {
+StoreInfo.GetAllStore = (result) => {
     db.query("SELECT * FROM store_info",
         (err, res) => {
             if (err) {
                 result(err, null);
                 return;
             }
+            if (res.length == 0) {
+                result({ msg: "Not Found" }, null);
+            }
             result(null, res);
-        })
+        });
 }
 
-StoreInfo.DeleteStore = (err, result, id) => {
+StoreInfo.DeleteStore = (id,result) => {
     db.query("DELETE FROM `store_info` WHERE store_id = ?", [id], (err, res) => {
         if (err) {
-            result(err, null);
+            result(null, err);
             return;
         }
         result(null, res);
     })
 }
 
-StoreInfo.UpadteStoreInfo = (err, user, id, result) => {
-    db.query("UPDATE categories SET category_name= ? WHERE category_id= ?", [category.category_name, id],
+StoreInfo.UpadteStoreInfo = (storeInfo, id, result) => {
+    db.query("UPDATE `store_info` SET `store_name`=?,`lat`=?,`lng`=?,`store_phone`=?,`store_email`=?,`store_address`=? WHERE store_id = ?", [storeInfo.store_name, storeInfo.lat, storeInfo.lng, storeInfo.store_phone, storeInfo.store_email,id],
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -53,7 +56,7 @@ StoreInfo.UpadteStoreInfo = (err, user, id, result) => {
         });
 }
 
-StoreInfo.SearchStoresById = (err, result, id) => {
+StoreInfo.SearchStoresById = (id, result) => {
     db.query("SELECT * FROM store_info WHERE store_id = ?", [id],
         (err, res) => {
             if (err) {

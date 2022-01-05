@@ -6,7 +6,7 @@ const Categories = category => {
     this.state = category.state;
 }
 
-Categories.AddCategory = (err, category, result) => {
+Categories.AddCategory = (category, result) => {
     db.query("INSERT INTO categories (category_id, category_name) VALUES (?,?)", [category.category_id, category.category_name],
         (err, res) => {
             if (err) {
@@ -17,7 +17,7 @@ Categories.AddCategory = (err, category, result) => {
         });
 }
 
-Categories.GetAllCategory = (err, result) => {
+Categories.GetAllCategory = (result) => {
     db.query("SELECT categories(category_id, category_name)  FROM categories",
         (err, res) => {
             if (err) {
@@ -28,7 +28,7 @@ Categories.GetAllCategory = (err, result) => {
         });
 }
 
-Categories.DeleteCategory = (err, id, result) => {
+Categories.DeleteCategory = (id, result) => {
     db.query("UPDATE categories SET state = ? WHERE category_id= ?", [0, id],
         (err, res) => {
             if (err) {
@@ -39,7 +39,7 @@ Categories.DeleteCategory = (err, id, result) => {
         });
 }
 
-Categories.UpdateCategory = (err, category, id, result) => {
+Categories.UpdateCategory = (category, id, result) => {
     db.query("UPDATE categories SET category_name= ? WHERE category_id= ?", [category.category_name, id],
         (err, res) => {
             if (err) {
@@ -50,7 +50,7 @@ Categories.UpdateCategory = (err, category, id, result) => {
         });
 }
 
-Categories.SearchCategoriesById = (err, result, id) => {
+Categories.SearchCategoriesById = (result, id) => {
     db.query("SELECT * FROM categories WHERE category_id= ?", [id],
         (err, res) => {
             if (err) {

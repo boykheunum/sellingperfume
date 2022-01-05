@@ -12,7 +12,7 @@ const Employees = employees => {
     this.status = employees.status;
 }
 
-Employees.AddEmployee = (err, result, employees) => {
+Employees.AddEmployee = (result, employees) => {
     db.query("INSERT INTO employees(employee_name, birthday, address, sex, phone, image, position_id) VALUES (?,?,?,?,?,?,?)", [employees.employee_id, employees.birthday, employees.address, employees.sex, employees.phone, employees.image, employees.position_id],
         (err, res) => {
             if (err) {
@@ -23,7 +23,7 @@ Employees.AddEmployee = (err, result, employees) => {
         })
 }
 
-Employees.GetAllEmployees = (err, result) => {
+Employees.GetAllEmployees = (result) => {
     db.query("SELECT * FROM employees",
         (err, res) => {
             if (err) {
@@ -34,7 +34,7 @@ Employees.GetAllEmployees = (err, result) => {
         })
 }
 
-Employees.DeleteEmployees = (err, result, id) => {
+Employees.DeleteEmployees = (result, id) => {
     db.query("UPDATE employees SET state=? WHERE employee_id = ?", [0, id], (err, res) => {
         if (err) {
             result(err, null);
@@ -44,7 +44,7 @@ Employees.DeleteEmployees = (err, result, id) => {
     })
 }
 
-Employees.SearchEmployeeById = (err, result, id) => {
+Employees.SearchEmployeeById = (result, id) => {
     db.query("SELECT * FROM employees WHERE employee_id = ?", [id],
         (err, res) => {
             if (err) {
@@ -55,7 +55,7 @@ Employees.SearchEmployeeById = (err, result, id) => {
         })
 }
 
-Employees.UpdateEmployee = (err, result, id, employees) => {
+Employees.UpdateEmployee = (result, id, employees) => {
     db.query("UPDATE employees SET employee_name=?, birthday=?,address=?,sex=?,phone=?,image=?,position_id=? WHERE employee_id=?", [employees.employee_name, employees.employee_birthday, employees.address,employees.sex, employees.phone,employees.image, employees.position_id, id],
         (err, res) => {
             if (err) {

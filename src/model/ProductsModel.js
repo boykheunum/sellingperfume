@@ -13,7 +13,7 @@ const Products = product => {
     this.state = product.state;
 }
 
-Products.AddProduct = (err, result, product) => {
+Products.AddProduct = (result, product) => {
     db.query("INSERT INTO products(category_id, product_name, price, importprice, image, description, quantity, date) VALUES (?,?,?,?,?,?,?,?)", [product.category_id, product.product_name, product.price, product.importprice, product.image, product.description, product.quantity, product.date],
         (err, res) => {
             if (err) {
@@ -24,7 +24,7 @@ Products.AddProduct = (err, result, product) => {
         })
 }
 
-Products.GetAllProducts = (err, result) => {
+Products.GetAllProducts = (result) => {
     db.query("SELECT * FROM products", (err, res) => {
         if (err) {
             result(err, null);
@@ -34,7 +34,7 @@ Products.GetAllProducts = (err, result) => {
     })
 }
 
-Products.DeleteProducts = (err, result, id) => {
+Products.DeleteProducts = (result, id) => {
     db.query("UPDATE products SET state=? WHERE product_id= ?", [0, id], (err, res) => {
         if (err) {
             result(err, null);
@@ -44,7 +44,7 @@ Products.DeleteProducts = (err, result, id) => {
     })
 }
 
-Products.UpdateProduct = (err, result, id, product) => {
+Products.UpdateProduct = (result, id, product) => {
     db.query("UPDATE products SET category_id=?,product_name=?,price=?,importprice=?,image=?,description=?,quantity=?,date=? WHERE product_id= ?", [product.category_id, product.product_name, product.price, product.importprice, product.image, product.description, product.quantity, product.date, product.state, id], (err, res) => {
         if (err) {
             result(err, null);
@@ -54,7 +54,7 @@ Products.UpdateProduct = (err, result, id, product) => {
     })
 }
 
-Products.SearchProductById = (err, result, id) => {
+Products.SearchProductById = (result, id) => {
     db.query("SELECT * FROM products WHERE id=?", [id], (err, result) => {
         if (err) {
             result(err, null);
@@ -64,7 +64,7 @@ Products.SearchProductById = (err, result, id) => {
     })
 }
 
-Products.SearchProductByName = (err, result, name) => {
+Products.SearchProductByName = (result, name) => {
     db.query("SELECT * FROM products WHERE id=?", [name], (err, result) => {
         if (err) {
             result(err, null);

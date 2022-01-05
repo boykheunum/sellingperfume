@@ -9,7 +9,7 @@ const BillDetails = billdetail => {
     this.detail_status = billdetail.detail_status;
 }
 
-BillDetails.AddBillDeltail = (err, result, billdetail) => {
+BillDetails.AddBillDeltail = (result, billdetail) => {
     db.query("INSERT INTO bill_details(bill_id, product_id, detail_quantily, detail_cost, detail_price) VALUES (?,?,?,?,?)", [billdetail.bill_id, billdetail.product_id, billdetail.detail_quantily, billdetail.detail_cost, billdetail.detail_price],
         (err, res) => {
             if (err) {
@@ -20,7 +20,7 @@ BillDetails.AddBillDeltail = (err, result, billdetail) => {
         })
 }
 
-BillDetails.GetAllBillDetails = (err, result) => {
+BillDetails.GetAllBillDetails = (result) => {
     db.query("SELECT * FROM bill_details",
         (err, res) => {
             if (err) {
@@ -31,7 +31,7 @@ BillDetails.GetAllBillDetails = (err, result) => {
         })
 }
 
-BillDetails.SearchBillDetalById = (err, result, id) => {
+BillDetails.SearchBillDetalById = (result, id) => {
     db.query("SELECT * FROM bill_details WHERE bill_id = ?", [id],
         (err, res) => {
             if (err) {

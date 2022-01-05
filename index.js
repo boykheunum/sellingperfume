@@ -5,7 +5,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-require("./routes/Product")(app);
+require("./src/routes/StoreInfo")(app);
 
 app.get("/", (req, res) => {
 

@@ -11,7 +11,7 @@ const Bills = bill => {
     this.user_id = bill.user_id;
 }
 
-Bills.AddBill = (err, result, bill) => {
+Bills.AddBill = (result, bill) => {
     db.query("INSERT INTO bills (bills_date, totalmoney, employee_id, coupon_id, processing_status, user_id) VALUES (?,?,?,?,?,?)", [bill.bills_date, bill.totalmoney, bill.employee_id, bill.coupon_id, bill.status, bill.processing_status, bill.user_id],
         (err, res) => {
             if (err) {
@@ -22,7 +22,7 @@ Bills.AddBill = (err, result, bill) => {
         })
 }
 
-Bills.GetAllBills = (err, result) => {
+Bills.GetAllBills = (result) => {
     db.query("SELECT * FROM bills",
         (err, res) => {
             if (err) {
@@ -33,7 +33,7 @@ Bills.GetAllBills = (err, result) => {
         })
 }
 
-Bills.DeleteBill = (err, result, id) => {
+Bills.DeleteBill = (result, id) => {
     db.query("UPDATE bills SET status_bills=? WHERE bills_id = ?", [0, id],
         (err, res) => {
             if (err) {
@@ -44,7 +44,7 @@ Bills.DeleteBill = (err, result, id) => {
         })
 }
 
-Bills.SearchByUserId = (err, result, userId) => {
+Bills.SearchByUserId = (result, userId) => {
     db.query("SELECT * FROM bills WHERE user_id = ?", [userId],
         (err, res) => {
             if (err) {
@@ -55,7 +55,7 @@ Bills.SearchByUserId = (err, result, userId) => {
         })
 }
 
-Bills.SearchByProcessingStatus = (err, result) => {
+Bills.SearchByProcessingStatus = (result) => {
     db.query("SELECT * FROM bills WHERE processing_status = ?", [0],
         (err, res) => {
             if (err) {

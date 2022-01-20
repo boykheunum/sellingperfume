@@ -1,6 +1,6 @@
 const db = require('../database/connectionDB')
 
-const BillDetails = billdetail => {
+const BillDetails = function (billdetail) {
     this.bill_id = billdetail.bill_id;
     this.product_id = billdetail.product_id;
     this.detail_quantily = billdetail.detail_quantily;

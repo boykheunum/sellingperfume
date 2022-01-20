@@ -38,3 +38,55 @@ exports.DeleteCoupons = (req, res) => {
         }
     });
 }
+
+exports.UpdateCoupons = (req, res) => {
+    if (!req.body) {
+        res.status(400).send({
+            message: "data is null"
+        });
+    }
+    const Coupon = new Coupons({
+        "value": req.body.value,
+        "quantity": req.body.quantity,
+        "manufacturing_date": req.body.manufacturing_date,
+        "expiry_date": req.body.expiry_date,
+        "state": req.body.state,
+        "proviso": req.body.proviso,
+    });
+    coupons.UpadteCoupons(Coupon, req.params.id, (error, data) => {
+        if (error) {
+            res.status(500).send({
+                message: error.message || "Không thể thêm mới"
+            });
+        }
+        else {
+            res.send(data);
+        }
+    });
+}
+
+exports.CreateCoupons = (req, res) => {
+    if (!req.body) {
+        res.status(400).send({
+            message: "data is null"
+        });
+    }
+    const Coupon = new Coupons({
+        "value": req.body.value,
+        "quantity": req.body.quantity,
+        "manufacturing_date": req.body.manufacturing_date,
+        "expiry_date": req.body.expiry_date,
+        "state": req.body.state,
+        "proviso": req.body.proviso,
+    });
+    coupons.AddCoupon(Coupon, (error, data) => {
+        if (error) {
+            res.status(500).send({
+                message: error.message || "Không thể thêm mới"
+            });
+        }
+        else {
+            res.send(data);
+        }
+    });
+}

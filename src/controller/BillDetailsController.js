@@ -38,3 +38,27 @@ exports.DeleteBillDetails = (req, res) => {
         }
     });
 }
+
+exports.CreateBillsDetail = (req, res) => {
+    if (!req.body) {
+        res.status(400).send({
+            message: "data is null"
+        });
+    }
+    const BillDetail = new BillDetails({
+        "product_id": billdetail.product_id,
+        "detail_quantily": billdetail.detail_quantily,
+        "this.detail_cost": billdetail.detail_cost,
+        "this.detail_price": billdetail.detail_price,
+    });
+    billDetails.AddBill(BillDetails, (error, data) => {
+        if (error) {
+            res.status(500).send({
+                message: error.message || "Không thể thêm mới"
+            });
+        }
+        else {
+            res.send(data);
+        }
+    });
+}

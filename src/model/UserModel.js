@@ -1,6 +1,6 @@
 const db = require('../database/connectionDB')
 
-const Users = function(user) {
+const Users = function (user) {
     this.user_id = user.user_id;
     this.username = user.username;
     this.password = user.password;
@@ -21,9 +21,9 @@ Users.AddUser = (user, result) => {
                 result(err, null);
                 return;
             }
-            result(null,{
+            result(null, {
                 message: "Them moi thanh cong",
-                id:res.insertId,...user
+                id: res.insertId, ...user
             });
         })
 }
@@ -50,15 +50,15 @@ Users.DeleteUser = (id, result) => {
 }
 
 Users.UpdateUser = (user, id, result) => {
-    db.query("UPDATE user SET username=?,password=?,name=?,birthday=?,phone=?,email=?,address=?,avatar=?,sex=? WHERE user_id= ?", [user.username, user.password, user.name, user.birthday, user.phone,user.email, user.address,user.avatar,user.sex,id],
+    db.query("UPDATE user SET username=?,password=?,name=?,birthday=?,phone=?,email=?,address=?,avatar=?,sex=? WHERE user_id= ?", [user.username, user.password, user.name, user.birthday, user.phone, user.email, user.address, user.avatar, user.sex, id],
         (err, res) => {
             if (err) {
                 result(err, null);
                 return;
             }
-            result(null,{
-                message:"Sửa thành công",
-                id:res.insertId,...user
+            result(null, {
+                message: "Sửa thành công",
+                id: res.insertId, ...user
             })
         });
 }

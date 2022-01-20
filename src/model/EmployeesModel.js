@@ -1,6 +1,6 @@
 const db = require('../database/connectionDB')
 
-const Employees = employees => {
+const Employees = function (employees) {
     this.employee_id = employees.employee_id;
     this.employee_name = employees.employee_name;
     this.birthday = employees.birthday;

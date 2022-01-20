@@ -1,6 +1,6 @@
 const db = require('../database/connectionDB')
 
-const Products = function(product){
+const Products = function (product) {
     this.product_id = product.product_id;
     this.category_id = product.category_id;
     this.product_name = product.product_name;
@@ -64,7 +64,7 @@ Products.SearchProductById = (id, result) => {
     })
 }
 
-Products.SearchProductByName = (name,result) => {
+Products.SearchProductByName = (name, result) => {
     db.query("SELECT * FROM products WHERE id=?", [name], (err, res) => {
         if (err) {
             result(err, null);

@@ -1,6 +1,6 @@
 const db = require('../database/connectionDB');
 
-const Categories = category => {
+const Categories = function(category) {
     this.category_id = category.category_id;
     this.category_name = category.category_name;
     this.state = category.state;

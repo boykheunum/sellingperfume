@@ -1,6 +1,6 @@
 const db = require('../database/connectionDB')
 
-const Coupons = coupon => {
+const Coupons = function(coupon){
     this.coupon_id = coupon.coupon_id;
     this.value = coupon.value;
     this.quantity = coupon.quantity;

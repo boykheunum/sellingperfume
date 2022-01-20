@@ -39,3 +39,57 @@ exports.DeleteEmployees = (req, res) => {
         }
     });
 }
+
+exports.UpdateEmployees = (req, res) => {
+    if (!req.body) {
+        res.status(400).send({
+            message: "data is null"
+        });
+    }
+    const Employee = new Employees({
+        "employee_name": req.body.employee_name,
+        "birthday": req.body.birthday,
+        "address": req.body.address,
+        "sex": req.body.sex,
+        "phone": req.body.phone,
+        "image": req.body.image,
+        "position_id": req.body.position_id,
+    });
+    employees.UpdateEmployee(Employee, req.params.id, (error, data) => {
+        if (error) {
+            res.status(500).send({
+                message: error.message || "Không thể thêm mới"
+            });
+        }
+        else {
+            res.send(data);
+        }
+    });
+}
+
+exports.CreateEmployees = (req, res) => {
+    if (!req.body) {
+        res.status(400).send({
+            message: "data is null"
+        });
+    }
+    const Employee = new Employees({
+        "employee_name": req.body.employee_name,
+        "birthday": req.body.birthday,
+        "address": req.body.address,
+        "sex": req.body.sex,
+        "phone": req.body.phone,
+        "image": req.body.image,
+        "position_id": req.body.position_id,
+    });
+    employees.AddProduct(Employees, (error, data) => {
+        if (error) {
+            res.status(500).send({
+                message: error.message || "Không thể thêm mới"
+            });
+        }
+        else {
+            res.send(data);
+        }
+    });
+}

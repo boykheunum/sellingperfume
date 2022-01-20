@@ -1,6 +1,6 @@
 const db = require('../database/connectionDB')
 
-const Positions = position => {
+const Positions = function(position) {
     this.position_id = position.position_id;
     this.position_name = position.position_name;
     this.status = position.status;

@@ -38,3 +38,45 @@ exports.DeletePosition = (req, res) => {
         }
     });
 }
+
+exports.UpdatePosition = (req, res) => {
+    if (!req.body) {
+        res.status(400).send({
+            message: "data is null"
+        });
+    }
+    const Position = new positions({
+        "position_name": req.body.position_name,
+    });
+    position.UpdatePosition(Position, req.params.id, (error, data) => {
+        if (error) {
+            res.status(500).send({
+                message: error.message || "Không thể thêm mới"
+            });
+        }
+        else {
+            res.send(data);
+        }
+    });
+}
+
+exports.CreatePosition = (req, res) => {
+    if (!req.body) {
+        res.status(400).send({
+            message: "data is null"
+        });
+    }
+    const Position = new Positions({
+        "position_name": req.body.position_name,
+    });
+    product.AddProduct(Position, (error, data) => {
+        if (error) {
+            res.status(500).send({
+                message: error.message || "Không thể thêm mới"
+            });
+        }
+        else {
+            res.send(data);
+        }
+    });
+}

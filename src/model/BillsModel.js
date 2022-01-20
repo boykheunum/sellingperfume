@@ -1,6 +1,6 @@
 const db = require('../database/connectionDB')
 
-const Bills = bill => {
+const Bills = function (bill) {
     this.bills_id = bill.bills_id;
     this.bills_date = bill.bills_date;
     this.totalmoney = bill.totalmoney;

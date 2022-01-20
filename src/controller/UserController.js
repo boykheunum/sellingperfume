@@ -1,4 +1,4 @@
-const user= require('../model/UserModel');
+const user = require('../model/UserModel');
 const CONTANTS = require('../database/contains');
 
 exports.GetUser = (req, res) => {
@@ -30,41 +30,10 @@ exports.GetUserById = (req, res) => {
 exports.CreateUser = (req, res) => {
     if (!req.body) {
         res.status(400).send({
-          message: "data is null"
+            message: "data is null"
         });
-      }
+    }
     const User = new user({
-      username: req.body.username,
-      password: req.body.password,
-      name: req.body.name,
-      birthday: req.body.birthday,
-      phone: req.body.phone,
-      email: req.body.email,
-      address: req.body.address,
-      avatar: req.body.avatar,
-      sex: req.body.sex,
-      
-       
-    });
-    user.AddUser(User,(error,data)=> {
-            if (error) {
-              res.status(500).send({
-                message: error.message || "Không thể thêm mới"
-              });
-            }
-            else {
-              res.send(data);
-            }
-          });
-          
-}
-exports.UpdateUser = (req, res) => {
-    if (!req.body) {
-        res.status(400).send({
-          message: "data is null"
-        });
-      }
-      const User = new user({
         username: req.body.username,
         password: req.body.password,
         name: req.body.name,
@@ -73,19 +42,48 @@ exports.UpdateUser = (req, res) => {
         email: req.body.email,
         address: req.body.address,
         avatar: req.body.avatar,
-        
+        sex: req.body.sex,
     });
-    user.UpdateUser(User,req.params.id,(error,data)=> {
-            if (error) {
-              res.status(500).send({
+    user.AddUser(User, (error, data) => {
+        if (error) {
+            res.status(500).send({
                 message: error.message || "Không thể thêm mới"
-              });
-            }
-            else {
-              res.send(data);
-            }
-          });
-          
+            });
+        }
+        else {
+            res.send(data);
+        }
+    });
+}
+
+exports.UpdateUser = (req, res) => {
+    if (!req.body) {
+        res.status(400).send({
+            message: "data is null"
+        });
+    }
+    const User = new user({
+        username: req.body.username,
+        password: req.body.password,
+        name: req.body.name,
+        birthday: req.body.birthday,
+        phone: req.body.phone,
+        email: req.body.email,
+        address: req.body.address,
+        avatar: req.body.avatar,
+
+    });
+    user.UpdateUser(User, req.params.id, (error, data) => {
+        if (error) {
+            res.status(500).send({
+                message: error.message || "Không thể thêm mới"
+            });
+        }
+        else {
+            res.send(data);
+        }
+    });
+
 }
 
 exports.DeleteUser = (req, res) => {

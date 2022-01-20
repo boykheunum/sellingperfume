@@ -38,3 +38,30 @@ exports.DeleteBills = (req, res) => {
         }
     });
 }
+
+
+exports.CreateBills = (req, res) => {
+    if (!req.body) {
+        res.status(400).send({
+            message: "data is null"
+        });
+    }
+    const Bill = new Bills({
+        "bills_date": req.body.bills_date,
+        "totalmoney": req.body.totalmoney,
+        "employee_id": req.body.employee_id,
+        "coupon_id": req.body.coupon_id,
+        "status_bills": req.body.status_bills,
+        "user_id": req.body.user_id,
+    });
+    bills.AddBill(Bill, (error, data) => {
+        if (error) {
+            res.status(500).send({
+                message: error.message || "Không thể thêm mới"
+            });
+        }
+        else {
+            res.send(data);
+        }
+    });
+}

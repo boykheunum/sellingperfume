@@ -1,6 +1,6 @@
 const db = require('../database/connectionDB')
 
-const Products = product => {
+const Products = function(product){
     this.product_id = product.product_id;
     this.category_id = product.category_id;
     this.product_name = product.product_name;

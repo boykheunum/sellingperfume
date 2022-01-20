@@ -1,6 +1,6 @@
 const db = require('../database/connectionDB')
 
-const Users = user => {
+const Users = function(user) {
     this.user_id = user.user_id;
     this.username = user.username;
     this.password = user.password;
@@ -15,13 +15,16 @@ const Users = user => {
 }
 
 Users.AddUser = (user, result) => {
-    db.query("INSERT INTO user(username, password, name, birthday, phone, email, address, avatar, sex ) VALUES (?,?,?,?,?,?,?,?,?)", [user.username, user.password, user.name, user.birthday, user.phone, user.email, user.address, user.avatar, user.sex],
+    db.query("INSERT INTO user(username, password, name, birthday, phone, email, address, avatar, sex) VALUES (?,?,?,?,?,?,?,?,?)", [user.username, user.password, user.name, user.birthday, user.phone, user.email, user.address, user.avatar, user.sex],
         (err, res) => {
             if (err) {
                 result(err, null);
                 return;
             }
-            result(null, res);
+            result(null,{
+                message: "Them moi thanh cong",
+                id:res.insertId,...user
+            });
         })
 }
 
@@ -53,7 +56,10 @@ Users.UpdateUser = (user, id, result) => {
                 result(err, null);
                 return;
             }
-            result(null, res)
+            result(null,{
+                message:"Sửa thành công",
+                id:res.insertId,...user
+            })
         });
 }
 

@@ -5,7 +5,7 @@ exports.GetBillDetails = (req, res) => {
     billDetails.GetAllBillDetails((err, data) => {
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
-                message: err.message || "Some error occurred while retrieving...",
+                message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
             res.status(CONTANTS.STATUS_CODE.SUCCESS).send(data);
@@ -18,7 +18,7 @@ exports.GetBillDetailsById = (req, res) => {
     billDetails.SearchBillDetailsById(id, (err, data) => {
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
-                message: err.message || "Some error occurred while retrieving...",
+                message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
             res.status(CONTANTS.STATUS_CODE.SUCCESS).send(data);
@@ -31,10 +31,10 @@ exports.DeleteBillDetails = (req, res) => {
     billDetails.DeleteBillDetails(id, (err, data) => {
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
-                message: err.message || "Some error occurred while retrieving...",
+                message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
-            res.send({ message: `Customer was deleted successfully!` });
+            res.send({ message: `Xóa thành công` });
         }
     });
 }

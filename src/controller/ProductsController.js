@@ -5,7 +5,7 @@ exports.GetProduct = (req, res) => {
     product.GetAllProducts((err, data) => {
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
-                message: err.message || "Some error occurred while retrieving...",
+                message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
             res.status(CONTANTS.STATUS_CODE.SUCCESS).send(data);
@@ -18,23 +18,81 @@ exports.GetProductById = (req, res) => {
     product.SearchProductById(id, (err, data) => {
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
-                message: err.message || "Some error occurred while retrieving...",
+                message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
             res.status(CONTANTS.STATUS_CODE.SUCCESS).send(data);
         }
     });
 }
-
+exports.CreateProduct = (req, res) => {
+    if (!req.body) {
+      res.status(400).send({
+        message: "data is null"
+      });
+    }
+    const products = new product({
+    
+      category_id: req.body.category_id,
+      product_name: req.body.product_name,
+      priceprice: req.body.priceprice,
+      importprice: req.body.importprice,
+      image: req.body.image,
+      description: req.body.description,
+      quantity: req.body.quantity,
+      date: req.body.date,
+  
+    });
+    product.AddProduct(products, (error, data) => {
+      if (error) {
+        res.status(500).send({
+          message: error.message || "Không thể thêm mới"
+        });
+      }
+      else {
+        res.send(data);
+      }
+    });
+  
+  }
+  exports.UpdateProduct = (req, res) => {
+    if (!req.body) {
+      res.status(400).send({
+        message: "data is null"
+      });
+    }
+    const products = new product({
+      
+      category_id: req.body.category_id,
+      product_name: req.body.product_name,
+      priceprice: req.body.priceprice,
+      importprice: req.body.importprice,
+      image: req.body.image,
+      description: req.body.description,
+      quantity: req.body.quantity,
+      date: req.body.date,
+    });
+    product.UpdateProduct(products, req.params.id, (error, data) => {
+      if (error) {
+        res.status(500).send({
+          message: error.message || "Không thể thêm mới"
+        });
+      }
+      else {
+        res.send(data);
+      }
+    });
+  
+  }
 exports.DeleteProduct = (req, res) => {
     let id = req.params.id
     product.DeleteProduct(id, (err, data) => {
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
-                message: err.message || "Some error occurred while retrieving...",
+                message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
-            res.send({ message: `Customer was deleted successfully!` });
+            res.send({ message: `Xóa thành công sản phẩm` });
         }
     });
 }

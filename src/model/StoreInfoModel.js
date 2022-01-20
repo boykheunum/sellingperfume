@@ -1,6 +1,6 @@
 const db = require('../database/connectionDB')
 
-const StoreInfo = storeinfo => {
+const StoreInfo = function(storeinfo) {
     this.store_id = storeinfo.store_id;
     this.store_name = storeinfo.store_name;
     this.lat = storeinfo.lat;
@@ -17,7 +17,10 @@ StoreInfo.AddStore = (storeinfo, result) => {
                 result(err, null);
                 return;
             }
-            result(null, res);
+            result(null,{
+                message:"Thêm thành công",
+                id:res.insertId,...storeinfo
+            });
         })
 }
 
@@ -45,14 +48,17 @@ StoreInfo.DeleteStore = (id,result) => {
     })
 }
 
-StoreInfo.UpadteStoreInfo = (storeInfo, id, result) => {
-    db.query("UPDATE `store_info` SET `store_name`=?,`lat`=?,`lng`=?,`store_phone`=?,`store_email`=?,`store_address`=? WHERE store_id = ?", [storeInfo.store_name, storeInfo.lat, storeInfo.lng, storeInfo.store_phone, storeInfo.store_email,id],
+StoreInfo.UpdateStoreInfo = (storeInfo, id, result) => {
+    db.query("UPDATE `store_info` SET `store_name`=?,`lat`=?,`lng`=?,`store_phone`=?,`store_email`=?,`store_address`=? WHERE store_id = ?", [storeInfo.store_name, storeInfo.lat, storeInfo.lng, storeInfo.store_phone, storeInfo.store_email,storeInfo.store_address,id],
         (err, res) => {
             if (err) {
                 result(err, null);
                 return;
             }
-            result(null, res)
+            result(null,{
+                message:"Sửa thành công",
+                id:res.insertId,...storeInfo
+            });
         });
 }
 

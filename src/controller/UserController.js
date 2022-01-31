@@ -88,13 +88,30 @@ exports.UpdateUser = (req, res) => {
 
 exports.DeleteUser = (req, res) => {
     let id = req.params.id
-    user.DeleteUser(id, (err, data) => {
+    user.DeleteUser(id, (err) => {
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
                 message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
-            res.send({ message: `Xóa thành công người dùng` });
+            res.send({ message: 'Xóa thành công người dùng' });
+        }
+    });
+}
+
+exports.login =(req, res) => {
+    res.render('login');
+}
+
+
+exports.Login = (req, res) => {
+    user.login((err, data) => {
+        if (err) {
+            res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
+                message: err.message || "Đã xảy ra một số lỗi",
+            });
+        } else {
+            res.status(CONTANTS.STATUS_CODE.SUCCESS).send(data);
         }
     });
 }

@@ -45,13 +45,13 @@ exports.CreateBillsDetail = (req, res) => {
             message: "data is null"
         });
     }
-    const BillDetail = new BillDetails({
+    const BillDetail = new billDetails({
         "product_id": billdetail.product_id,
         "detail_quantily": billdetail.detail_quantily,
         "this.detail_cost": billdetail.detail_cost,
         "this.detail_price": billdetail.detail_price,
     });
-    billDetails.AddBill(BillDetails, (error, data) => {
+    billDetails.AddBill(BillDetail, (error, data) => {
         if (error) {
             res.status(500).send({
                 message: error.message || "Không thể thêm mới"

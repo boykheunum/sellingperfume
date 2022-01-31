@@ -13,13 +13,16 @@ const Employees = function (employees) {
 }
 
 Employees.AddEmployee = (employees, result) => {
-    db.query("INSERT INTO employees(employee_name, birthday, address, sex, phone, image, position_id) VALUES (?,?,?,?,?,?,?)", [employees.employee_id, employees.birthday, employees.address, employees.sex, employees.phone, employees.image, employees.position_id],
+    db.query("INSERT INTO employees(employee_name, birthday, address, sex, phone, image, position_id) VALUES (?,?,?,?,?,?,?)", [employees.employee_name, employees.birthday, employees.address, employees.sex, employees.phone, employees.image, employees.position_id],
         (err, res) => {
             if (err) {
                 result(err, null);
                 return;
             }
-            result(null, res);
+            result(null, {
+                message: "Thêm thành công",
+                id: res.insertId, ...employees
+            });
         })
 }
 
@@ -31,17 +34,20 @@ Employees.GetAllEmployees = (result) => {
                 return;
             }
             result(null, res);
-        })
+        });
 }
 
 Employees.DeleteEmployees = (id, result) => {
-    db.query("UPDATE employees SET state=? WHERE employee_id = ?", [0, id], (err, res) => {
+    db.query("UPDATE employees SET status=? WHERE employee_id = ?", [0, id], (err, res) => {
         if (err) {
             result(err, null);
             return;
         }
-        result(null, res);
-    })
+        result(null, {
+            message: "Xóa thành công",
+
+        });
+    });
 }
 
 Employees.SearchEmployeeById = (id, result) => {
@@ -52,17 +58,20 @@ Employees.SearchEmployeeById = (id, result) => {
                 return;
             }
             result(null, res);
-        })
+        });
 }
 
 Employees.UpdateEmployee = (id, employees, result) => {
-    db.query("UPDATE employees SET employee_name=?, birthday=?,address=?,sex=?,phone=?,image=?,position_id=? WHERE employee_id=?", [employees.employee_name, employees.employee_birthday, employees.address, employees.sex, employees.phone, employees.image, employees.position_id, id],
+    db.query("UPDATE `employees` SET `employee_name`=?,`birthday`=?,`address`=?,`sex`=?,`phone`=?,`image`=?,`position_id`=? WHERE employee_id=?", [employees.employee_name, employees.employee_birthday, employees.address, employees.sex, employees.phone, employees.image, employees.position_id, id],
         (err, res) => {
             if (err) {
                 result(err, null);
                 return;
             }
-            result(null, res)
+            result(null, {
+                message: "Sửa thành công",
+                id: res.insertId, ...employees
+            });
         });
 }
 

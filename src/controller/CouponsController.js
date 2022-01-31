@@ -2,7 +2,7 @@ const coupons = require('../model/CouponsModel');
 const CONTANTS = require('../database/contains');
 
 exports.GetCoupons = (req, res) => {
-    coupons.GetAllCoupons((err, data) => {
+    coupons.GetAllCoupon((err, data) => {
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
                 message: err.message || "Đã xảy ra một số lỗi",
@@ -28,7 +28,7 @@ exports.GetCouponsById = (req, res) => {
 
 exports.DeleteCoupons = (req, res) => {
     let id = req.params.id
-    coupons.DeleteCoupons(id, (err, data) => {
+    coupons.DeleteCoupon(id, (err, data) => {
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
                 message: err.message || "Đã xảy ra một số lỗi",
@@ -45,12 +45,11 @@ exports.UpdateCoupons = (req, res) => {
             message: "data is null"
         });
     }
-    const Coupon = new Coupons({
+    const Coupon = new coupons({
         "value": req.body.value,
         "quantity": req.body.quantity,
         "manufacturing_date": req.body.manufacturing_date,
         "expiry_date": req.body.expiry_date,
-        "state": req.body.state,
         "proviso": req.body.proviso,
     });
     coupons.UpadteCoupons(Coupon, req.params.id, (error, data) => {
@@ -71,12 +70,11 @@ exports.CreateCoupons = (req, res) => {
             message: "data is null"
         });
     }
-    const Coupon = new Coupons({
+    const Coupon = new coupons({
         "value": req.body.value,
         "quantity": req.body.quantity,
         "manufacturing_date": req.body.manufacturing_date,
         "expiry_date": req.body.expiry_date,
-        "state": req.body.state,
         "proviso": req.body.proviso,
     });
     coupons.AddCoupon(Coupon, (error, data) => {

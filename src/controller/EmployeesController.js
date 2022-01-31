@@ -15,7 +15,7 @@ exports.GetEmployees = (req, res) => {
 
 exports.GetEmployeesById = (req, res) => {
     let id = req.params.id
-    employees.SearchEmployeesById(id, (err, data) => {
+    employees.SearchEmployeeById(id, (err, data) => {
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
                 message: err.message || "Đã xảy ra một số lỗi",
@@ -35,7 +35,7 @@ exports.DeleteEmployees = (req, res) => {
                 message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
-            res.send({ message: `Xoa thành công nhân viên` });
+            res.send({ message: 'Xoa thành công nhân viên' });
         }
     });
 }
@@ -46,7 +46,7 @@ exports.UpdateEmployees = (req, res) => {
             message: "data is null"
         });
     }
-    const Employee = new Employees({
+    const Employee = new employees({
         "employee_name": req.body.employee_name,
         "birthday": req.body.birthday,
         "address": req.body.address,
@@ -55,7 +55,7 @@ exports.UpdateEmployees = (req, res) => {
         "image": req.body.image,
         "position_id": req.body.position_id,
     });
-    employees.UpdateEmployee(Employee, req.params.id, (error, data) => {
+    employees.UpdateEmployee(req.params.id,Employee, (error, data) => {
         if (error) {
             res.status(500).send({
                 message: error.message || "Không thể thêm mới"
@@ -73,7 +73,7 @@ exports.CreateEmployees = (req, res) => {
             message: "data is null"
         });
     }
-    const Employee = new Employees({
+    const Employee = new employees({
         "employee_name": req.body.employee_name,
         "birthday": req.body.birthday,
         "address": req.body.address,
@@ -82,7 +82,7 @@ exports.CreateEmployees = (req, res) => {
         "image": req.body.image,
         "position_id": req.body.position_id,
     });
-    employees.AddProduct(Employees, (error, data) => {
+    employees.AddEmployee(Employee, (error, data) => {
         if (error) {
             res.status(500).send({
                 message: error.message || "Không thể thêm mới"

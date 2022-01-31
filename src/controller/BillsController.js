@@ -46,7 +46,7 @@ exports.CreateBills = (req, res) => {
             message: "data is null"
         });
     }
-    const Bill = new Bills({
+    const Bill = new bills({
         "bills_date": req.body.bills_date,
         "totalmoney": req.body.totalmoney,
         "employee_id": req.body.employee_id,

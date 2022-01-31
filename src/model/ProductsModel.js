@@ -20,7 +20,10 @@ Products.AddProduct = (product, result) => {
                 result(err, null);
                 return;
             }
-            result(null, res);
+            result(null, {
+                message: "Them moi thanh cong",
+                id: res.insertId, ...product
+            });
         })
 }
 
@@ -34,7 +37,7 @@ Products.GetAllProducts = (result) => {
     })
 }
 
-Products.DeleteProducts = (result, id) => {
+Products.DeleteProducts = (id, result) => {
     db.query("UPDATE products SET state=? WHERE product_id= ?", [0, id], (err, res) => {
         if (err) {
             result(err, null);
@@ -50,12 +53,15 @@ Products.UpdateProduct = (id, product, result) => {
             result(err, null);
             return;
         }
-        result(null, res);
+        result(null, {
+            message: "Sửa thành công",
+            id: res.insertId, ...product
+        });
     })
 }
 
 Products.SearchProductById = (id, result) => {
-    db.query("SELECT * FROM products WHERE id=?", [id], (err, res) => {
+    db.query("SELECT * FROM products WHERE produc_id=?", [id], (err, res) => {
         if (err) {
             result(err, null);
             return;

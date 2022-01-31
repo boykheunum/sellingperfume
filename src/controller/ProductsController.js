@@ -35,7 +35,7 @@ exports.CreateProduct = (req, res) => {
   const products = new product({
     category_id: req.body.category_id,
     product_name: req.body.product_name,
-    priceprice: req.body.priceprice,
+    price: req.body.price,
     importprice: req.body.importprice,
     image: req.body.image,
     description: req.body.description,
@@ -64,7 +64,7 @@ exports.UpdateProduct = (req, res) => {
 
     category_id: req.body.category_id,
     product_name: req.body.product_name,
-    priceprice: req.body.priceprice,
+    price: req.body.price,
     importprice: req.body.importprice,
     image: req.body.image,
     description: req.body.description,
@@ -84,14 +84,15 @@ exports.UpdateProduct = (req, res) => {
 
 }
 exports.DeleteProduct = (req, res) => {
-  let id = req.params.id
-  product.DeleteProduct(id, (err, data) => {
+
+  
+  product.DeleteProducts(req.params.id, (err) => {
     if (err) {
       res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
         message: err.message || "Đã xảy ra một số lỗi",
       });
     } else {
-      res.send({ message: `Xóa thành công sản phẩm` });
+      res.send({ message: 'Xóa thành công sản phẩm' });
     }
   });
 }

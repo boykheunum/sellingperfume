@@ -46,7 +46,10 @@ Categories.UpdateCategory = (category, id, result) => {
                 result(err, null);
                 return;
             }
-            result(null, res)
+            result(null, {
+                message: "Sửa thành công",
+                id: res.insertId, ...category
+            })
         });
 }
 

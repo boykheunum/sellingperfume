@@ -27,7 +27,7 @@ exports.GetCategoriesById = (req, res) => {
 
 exports.DeleteCategories = (req, res) => {
     let id = req.params.id
-    categories.DeleteCategories(id, (err, data) => {
+    categories.DeleteCategory(id, (err, data) => {
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
                 message: err.message || "Đã xảy ra một số lỗi",
@@ -44,7 +44,7 @@ exports.UpdateCategories = (req, res) => {
             message: "data is null"
         });
     }
-    const Categorie = new Categories({
+    const Categorie = new categories({
         "category_name": req.body.category_name,
     });
     categories.UpdateCategory(Categorie, req.params.id, (error, data) => {
@@ -65,7 +65,7 @@ exports.CreateCategories = (req, res) => {
             message: "data is null"
         });
     }
-    const Categorie = new Categories({
+    const Categorie = new categories({
         "category_name": req.body.category_name,
     });
     categories.AddCategory(Categorie, (error, data) => {

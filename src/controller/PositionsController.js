@@ -15,7 +15,7 @@ exports.GetPosition = (req, res) => {
 
 exports.GetPositionById = (req, res) => {
     let id = req.params.id
-    position.SearchPositionById(id, (err, data) => {
+    position.SearchPositionDetalById(id, (err, data) => {
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
                 message: err.message || "Đã xảy ra một số lỗi",
@@ -45,7 +45,7 @@ exports.UpdatePosition = (req, res) => {
             message: "data is null"
         });
     }
-    const Position = new positions({
+    const Position = new position({
         "position_name": req.body.position_name,
     });
     position.UpdatePosition(Position, req.params.id, (error, data) => {
@@ -66,10 +66,10 @@ exports.CreatePosition = (req, res) => {
             message: "data is null"
         });
     }
-    const Position = new Positions({
+    const Position = new position({
         "position_name": req.body.position_name,
     });
-    product.AddProduct(Position, (error, data) => {
+    position.AddPosition(Position, (error, data) => {
         if (error) {
             res.status(500).send({
                 message: error.message || "Không thể thêm mới"

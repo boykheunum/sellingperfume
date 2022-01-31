@@ -7,4 +7,5 @@ module.exports = (app) => {
   app.post("/user/createuser", UserController.CreateUser);
   app.put("/user/updateuser/:id", UserController.UpdateUser);
   app.delete("/user/delete/:id", UserController.DeleteUser)
+ 
 };

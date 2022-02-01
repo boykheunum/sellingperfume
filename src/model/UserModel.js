@@ -29,7 +29,7 @@ Users.AddUser = (user, result) => {
 }
 
 Users.GetAllUser = (result) => {
-    db.query("SELECT * FROM user",
+    db.query("SELECT * FROM user status_user = ?", [1],
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -64,7 +64,7 @@ Users.UpdateUser = (user, id, result) => {
 }
 
 Users.SearchUserById = (id, result) => {
-    db.query("SELECT * FROM user WHERE user_id= ?", [id],
+    db.query("SELECT * FROM user WHERE user_id= ? AND status_user = ? ", [id, 1],
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -74,7 +74,7 @@ Users.SearchUserById = (id, result) => {
         });
 }
 
-exports.login = async(req, res) => {
+exports.login = async (req, res) => {
     try {
         const { username, password } = req.body;
 
@@ -83,7 +83,7 @@ exports.login = async(req, res) => {
             return res.status(400).render('login');
         }
 
-        db.query('SELECT * FROM user WHERE username = ?', [username], async(error, results) => {
+        db.query('SELECT * FROM user WHERE username = ?', [username], async (error, results) => {
             console.log(results);
             if (!results || !(await bcrypt.compare(password, results[0].password))) {
                 req.flash('danger', 'Username or password is incorrect!');

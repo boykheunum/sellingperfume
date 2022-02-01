@@ -27,7 +27,7 @@ Employees.AddEmployee = (employees, result) => {
 }
 
 Employees.GetAllEmployees = (result) => {
-    db.query("SELECT * FROM employees",
+    db.query("SELECT * FROM employees WHERE status = ?",[1],
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -51,7 +51,7 @@ Employees.DeleteEmployees = (id, result) => {
 }
 
 Employees.SearchEmployeeById = (id, result) => {
-    db.query("SELECT * FROM employees WHERE employee_id = ?", [id],
+    db.query("SELECT * FROM employees WHERE employee_id = ? AND status = ?", [id, 1],
         (err, res) => {
             if (err) {
                 result(err, null);

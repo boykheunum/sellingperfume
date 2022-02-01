@@ -23,7 +23,7 @@ Bills.AddBill = (result, bill) => {
 }
 
 Bills.GetAllBills = (result) => {
-    db.query("SELECT * FROM bills",
+    db.query("SELECT * FROM bills WHERE status_bills = ?", [1],
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -45,7 +45,7 @@ Bills.DeleteBill = (userId, result) => {
 }
 
 Bills.SearchByUserId = (userId, result) => {
-    db.query("SELECT * FROM bills WHERE user_id = ?", [userId],
+    db.query("SELECT * FROM bills WHERE user_id = ? and  status_bills = ?", [userId, 1],
         (err, res) => {
             if (err) {
                 result(err, null);

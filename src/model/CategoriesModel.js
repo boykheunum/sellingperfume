@@ -1,6 +1,6 @@
 const db = require('../database/connectionDB');
 
-const Categories = function(category) {
+const Categories = function (category) {
     this.category_id = category.category_id;
     this.category_name = category.category_name;
     this.state = category.state;
@@ -18,7 +18,7 @@ Categories.AddCategory = (category, result) => {
 }
 
 Categories.GetAllCategory = (result) => {
-    db.query("SELECT * FROM categories",
+    db.query("SELECT * FROM categories WHERE state=?", [1],
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -40,7 +40,7 @@ Categories.DeleteCategory = (id, result) => {
 }
 
 Categories.UpdateCategory = (category, id, result) => {
-    db.query("UPDATE categories SET category_name= ? WHERE category_id= ?", [category.category_name, id],
+    db.query("UPDATE categories SET category_name= ? WHERE category_id = ?", [category.category_name, id],
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -54,7 +54,7 @@ Categories.UpdateCategory = (category, id, result) => {
 }
 
 Categories.SearchCategoriesById = (id, result) => {
-    db.query("SELECT * FROM categories WHERE category_id= ?", [id],
+    db.query("SELECT * FROM categories WHERE category_id= ? and state=?", [id, 1],
         (err, res) => {
             if (err) {
                 result(err, null);

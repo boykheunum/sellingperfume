@@ -21,7 +21,7 @@ BillDetails.AddBillDeltail = (result, billdetail) => {
 }
 
 BillDetails.GetAllBillDetails = (result) => {
-    db.query("SELECT * FROM bill_details",
+    db.query("SELECT * FROM bill_details WHERE detail_status = 1",
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -32,7 +32,7 @@ BillDetails.GetAllBillDetails = (result) => {
 }
 
 BillDetails.SearchBillDetalById = (id, result) => {
-    db.query("SELECT * FROM bill_details WHERE bill_id = ?", [id],
+    db.query("SELECT * FROM bill_details WHERE bill_id = ? and detail_status = 1", [id],
         (err, res) => {
             if (err) {
                 result(err, null);

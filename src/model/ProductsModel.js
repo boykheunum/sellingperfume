@@ -28,13 +28,14 @@ Products.AddProduct = (product, result) => {
 }
 
 Products.GetAllProducts = (result) => {
-    db.query("SELECT * FROM products", (err, res) => {
-        if (err) {
-            result(err, null);
-            return;
-        }
-        result(null, res);
-    })
+    db.query("SELECT * FROM products WHERE state = ?", [1],
+        (err, res) => {
+            if (err) {
+                result(err, null);
+                return;
+            }
+            result(null, res);
+        })
 }
 
 Products.DeleteProducts = (id, result) => {
@@ -61,7 +62,7 @@ Products.UpdateProduct = (id, product, result) => {
 }
 
 Products.SearchProductById = (id, result) => {
-    db.query("SELECT * FROM products WHERE produc_id=?", [id], (err, res) => {
+    db.query("SELECT * FROM products WHERE produc_id=? AND state = ?", [id, 1], (err, res) => {
         if (err) {
             result(err, null);
             return;
@@ -71,13 +72,14 @@ Products.SearchProductById = (id, result) => {
 }
 
 Products.SearchProductByName = (name, result) => {
-    db.query("SELECT * FROM products WHERE id=?", [name], (err, res) => {
-        if (err) {
-            result(err, null);
-            return;
-        }
-        result(null, res);
-    })
+    db.query("SELECT * FROM products WHERE id=? AND AND state = ?", [name, 1],
+        (err, res) => {
+            if (err) {
+                result(err, null);
+                return;
+            }
+            result(null, res);
+        })
 }
 
 module.exports = Products;

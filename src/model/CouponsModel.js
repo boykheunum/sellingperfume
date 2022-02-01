@@ -26,7 +26,7 @@ Coupons.AddCoupon = (coupon, result) => {
 }
 
 Coupons.GetAllCoupon = (result) => {
-    db.query("SELECT * FROM coupons",
+    db.query("SELECT * FROM coupons WHERE state = ?",[1],
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -47,7 +47,7 @@ Coupons.DeleteCoupon = (id, result) => {
 }
 
 Coupons.SearchCouponsById = (id, result) => {
-    db.query("SELECT * FROM coupons WHERE coupon_id = ?", [id],
+    db.query("SELECT * FROM coupons WHERE coupon_id = ? and state = ?", [id, 1],
         (err, res) => {
             if (err) {
                 result(err, null);

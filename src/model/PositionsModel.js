@@ -18,7 +18,7 @@ Positions.AddPosition = (position, result) => {
 }
 
 Positions.GetAllPositions = (result) => {
-    db.query("SELECT * FROM positions",
+    db.query("SELECT * FROM positions WHERE STATUS = ?", [1],
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -39,7 +39,7 @@ Positions.DeletePosition = (id, result) => {
 }
 
 Positions.SearchPositionDetalById = (id, result) => {
-    db.query("SELECT * FROM positions WHERE position_id = ?", [id],
+    db.query("SELECT * FROM positions WHERE position_id = ? AND status = ?", [id, 1],
         (err, res) => {
             if (err) {
                 result(err, null);

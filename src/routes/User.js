@@ -8,4 +8,11 @@ module.exports = (app) => {
   app.put("/user/updateuser/:id", UserController.UpdateUser);
   app.delete("/user/delete/:id", UserController.DeleteUser)
  
+
+
+
+  // ví dụ cho hiển thị views
+  app.get("/",(req,res)=>{
+    res.render("index");
+  });
 };

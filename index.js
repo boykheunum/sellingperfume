@@ -3,10 +3,13 @@ const bodyParser = require("body-parser");
 const app = express();
 const expressHbs = require('express-handlebars');
 const { engine } = require('express-handlebars');
- 
+app.use('/src/views/static',express.static('./src/views/static'));
+app.use('/src/views',express.static('./src/views')); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', __dirname + '/src/views');
 
 
 require("./src/routes/User")(app);

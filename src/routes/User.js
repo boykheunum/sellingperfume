@@ -11,8 +11,9 @@ module.exports = (app) => {
 
 
 
-  // ví dụ cho hiển thị views
-  app.get("/",(req,res)=>{
-    res.render("index");
+  
+  app.get('/admin/dsloaisp', (req, res) => {
+    res.render('template/admin/dsloaisp',{layout: 'mainadmin'});
   });
+
 };

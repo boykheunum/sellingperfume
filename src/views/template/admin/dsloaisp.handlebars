@@ -1,0 +1,48 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Mã loại sản phẩm</th>
+            <th scope="col">Tên loại sản phẩm</th>
+            <th scope="col">Chức năng</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+
+        <tr>
+            <th scope="row">{{this.category_id}}</th>
+            <td>#</td>
+            <td>
+                <button type="button" class="btn btn-secondary" id="{{this.category_id}}">Thêm</button>
+                <button type="button" class="btn btn-danger" id="{{this.category_id}}"
+                    value="{{this.category_id}}">Sửa</button>
+                <button type="button" class="btn btn-success" id="{{this.category_id}}"
+                    value="{{this.category_id}}">Xóa</button>
+
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+
+        $(".btn-danger").click(function (e) {
+            let position = $(this);
+        });
+
+        $(".btn-success").click(function (e) {
+            let position = $(this);
+            let id = position.val();
+            
+            $.ajax({
+                type:"DELETE",
+                url:"/categories/delete/"+id,
+                success: function(data){
+                    alert("thanh cong")
+                }
+            })
+        });
+    });
+</script>

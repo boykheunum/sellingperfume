@@ -2,13 +2,19 @@ const categories = require('../model/CategoriesModel');
 const CONTANTS = require('../database/contains');
 
 exports.getCategories = (req, res) => {
+    
     categories.GetAllCategory((err, data) => {
+        console.log("Hello");
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
                 message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
-            res.status(CONTANTS.STATUS_CODE.SUCCESS).send(data);
+            res.render('template/admin/dsloaisp',
+            {
+                layout: 'mainadmin',
+                data:data
+            });
         }
     });
 }

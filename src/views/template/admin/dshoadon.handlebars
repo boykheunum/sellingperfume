@@ -1,0 +1,61 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+
+            <th scope="col">Mã hóa đơn</th>
+            <th scope="col">Ngày </th>
+            <th scope="col">Tổng tiền</th>
+            <th scope="col">Mã nhân viên</th>
+            <th scope="col">Mã giảm giá</th>
+            <th scope="col">Loại trạng thái</th>
+            <th scope="col">Mã người dùng</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+
+        <tr>
+            <th scope="row">{{this.bills_id}}</th>
+            <th scope="row">{{this.bills_date}}</th>
+            <th scope="row">{{this.totalmoney}}</th>
+            <th scope="row">{{this.employee_id}}</th>
+            <th scope="row">{{this.coupon_id}}</th>
+            <th scope="row">{{this.processing_status}}</th>
+            <th scope="row">{{this.user_id}}</th>
+            
+
+            <td>
+                <button type="button" class="btn btn-secondary" id="{{this.bills_id}}">Thêm</button>
+                <button type="button" class="btn btn-danger" id="{{this.bills_id}}" value="{{this.bills_id}}">Sửa</button>
+                <button type="button" class="btn btn-success" id="{{this.bills_id}}"
+                    value="{{this.bills_id}}">Xóa</button>
+            </td>
+
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        //update
+        $(".btn-danger").click(function (e) {
+            let position = $(this);
+        });
+
+        //delete
+        $(".btn-success").click(function (e) {
+            let position = $(this);
+            let id = position.val();
+            
+            $.ajax({
+                type: "DELETE",
+                url: "/bills/delete/" + id,
+                success: function (data) {
+                    alert("thanh cong");
+                }
+            })
+        });
+    });
+</script>

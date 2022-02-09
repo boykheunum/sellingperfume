@@ -1,0 +1,67 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Mã người dùng</th>
+            <th scope="col">Tên đăng nhập</th>
+            <th scope="col">Mật khẩu</th>
+            <th scope="col">Họ và tên</th>
+            <th scope="col">Ngày sinh</th>
+            <th scope="col">Số điện thoại</th>
+            <th scope="col">Email</th>
+            <th scope="col">Địa chỉ</th>
+            <th scope="col">Avatar</th>
+            <th scope="col">Giới tính</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+
+        <tr>
+            <th scope="row">{{this.user_id}}</th>
+            <th scope="row">{{this.username}}</th>
+            <th scope="row">{{this.password}}</th>
+            <th scope="row">{{this.name}}</th>
+            <th scope="row">{{this.birthday}}</th>
+            <th scope="row">{{this.phone}}</th>
+            <th scope="row">{{this.email}}</th>
+            <th scope="row">{{this.adress}}</th>
+            <th scope="row">{{this.avatar}}</th>
+            <th scope="row">{{this.sex}}</th>
+
+            
+
+            <td>
+                <button type="button" class="btn btn-secondary" id="{{this.user_id}}">Thêm</button>
+                <button type="button" class="btn btn-danger" id="{{this.user_id}}" value="{{this.user_id}}">Sửa</button>
+                <button type="button" class="btn btn-success" id="{{this.user_id}}"
+                    value="{{this.user_id}}">Xóa</button>
+            </td>
+
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        //update
+        $(".btn-danger").click(function (e) {
+            let position = $(this);
+        });
+
+        //delete
+        $(".btn-success").click(function (e) {
+            let position = $(this);
+            let id = position.val();
+            alert(id)
+            $.ajax({
+                type: "DELETE",
+                url: "/user/delete/" + id,
+                success: function (data) {
+                    alert("thanh cong");
+                }
+            })
+        });
+    });
+</script>

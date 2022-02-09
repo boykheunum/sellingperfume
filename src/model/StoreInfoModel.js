@@ -31,9 +31,7 @@ StoreInfo.GetAllStore = (result) => {
                 result(err, null);
                 return;
             }
-            if (res.length == 0) {
-                result({ msg: "Not Found" }, null);
-            }
+            
             result(null, res);
         });
 }

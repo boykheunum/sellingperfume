@@ -1,0 +1,49 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Mã chức vụ</th>
+            <th scope="col">Tên chức vụ</th>
+            
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+
+        <tr>
+            <th scope="row">{{this.position_id}}</th>
+            <th scope="row">{{this.username_name}}</th>
+            <td>
+                <button type="button" class="btn btn-secondary" id="{{this.position_id}}">Thêm</button>
+                <button type="button" class="btn btn-danger" id="{{this.position_id}}" value="{{this.position_id}}">Sửa</button>
+                <button type="button" class="btn btn-success" id="{{this.position_id}}"
+                    value="{{this.position_id}}">Xóa</button>
+            </td>
+
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        //update
+        $(".btn-danger").click(function (e) {
+            let position = $(this);
+        });
+
+        //delete
+        $(".btn-success").click(function (e) {
+            let position = $(this);
+            let id = position.val();
+            alert(id)
+            $.ajax({
+                type: "DELETE",
+                url: "/Position/delete/" + id,
+                success: function (data) {
+                    alert("thanh cong");
+                }
+            })
+        });
+    });
+</script>

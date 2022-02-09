@@ -8,7 +8,7 @@ exports.GetUser = (req, res) => {
                 message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
-            res.status(CONTANTS.STATUS_CODE.SUCCESS).send(data);
+            res.render('template/admin/dsnguoidung', { layout: 'mainadmin', data: data });
         }
     });
 }
@@ -99,7 +99,7 @@ exports.DeleteUser = (req, res) => {
     });
 }
 
-exports.login =(req, res) => {
+exports.login = (req, res) => {
     res.render('login');
 }
 

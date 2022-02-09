@@ -8,7 +8,7 @@ exports.GetProduct = (req, res) => {
         message: err.message || "Đã xảy ra một số lỗi",
       });
     } else {
-      res.status(CONTANTS.STATUS_CODE.SUCCESS).send(data);
+        res.render('template/admin/dssanpham',{layout: 'mainadmin', data: data});
     }
   });
 }

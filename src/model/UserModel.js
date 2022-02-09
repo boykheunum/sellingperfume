@@ -29,7 +29,7 @@ Users.AddUser = (user, result) => {
 }
 
 Users.GetAllUser = (result) => {
-    db.query("SELECT * FROM user status_user = ?", [1],
+    db.query("SELECT * FROM `user` WHERE status_user = ?", [1],
         (err, res) => {
             if (err) {
                 result(err, null);

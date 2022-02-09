@@ -12,8 +12,8 @@ module.exports = (app) => {
 
 
   
-  app.get('/admin/dsloaisp', (req, res) => {
-    res.render('template/admin/dsloaisp',{layout: 'mainadmin'});
+  app.get('/admin/suauser', (req, res) => {
+    res.render('template/admin/suauser',{layout: 'mainadmin'});
   });
 
 };

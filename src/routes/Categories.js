@@ -5,5 +5,10 @@ module.exports = (app) => {
     app.post('/categories/create', categoriesController.CreateCategories);
     app.put('/categories/update/:id', categoriesController.UpdateCategories);
     app.get('/categories/searchcategoriesbyid/:id', categoriesController.GetCategoriesById);
-    app.delete("/categories/delete/:id", categoriesController.DeleteCategories)
+    app.delete("/categories/delete/:id", categoriesController.DeleteCategories);
+
+    //giao dien
+    app.get('/admin/sualoaisp', (req, res) => {
+        res.render('template/admin/sualoaisp',{layout: 'mainadmin'});
+      });
 }

@@ -6,5 +6,11 @@ module.exports = (app) => {
   app.post("/employees/create", EmployeesController.CreateEmployees);
   app.put("/employees/update/:id", EmployeesController.UpdateEmployees);
   app.get("/employees/searchemployeesbyid/:id", EmployeesController.GetEmployeesById);
-  app.delete("/employees/delete/:id", EmployeesController.DeleteEmployees)
+  app.delete("/employees/delete/:id", EmployeesController.DeleteEmployees);
+
+
+   //giao dien
+   app.get('/admin/suanv', (req, res) => {
+    res.render('template/admin/suanv',{layout: 'mainadmin'});
+  });
 };

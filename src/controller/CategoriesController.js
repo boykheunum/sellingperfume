@@ -56,7 +56,7 @@ exports.UpdateCategories = (req, res) => {
     categories.UpdateCategory(Categorie, req.params.id, (error, data) => {
         if (error) {
             res.status(500).send({
-                message: error.message || "Không thể thêm mới"
+                message: error.message || "Không thể sửa"
             });
         }
         else {

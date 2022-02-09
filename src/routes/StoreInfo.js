@@ -8,4 +8,8 @@ module.exports = (app) => {
   app.get("/storeinfo/searchstorebyid/:id", storeInfoController.GetStoreInfoById);
   app.delete("/storeinfo/delete/:id", storeInfoController.DeleteStore)
 
+  //giao dien
+  app.get('/admin/suainfo', (req, res) => {
+    res.render('template/admin/suainfo',{layout: 'mainadmin'});
+  });
 };

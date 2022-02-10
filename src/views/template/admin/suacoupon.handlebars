@@ -1,55 +1,54 @@
-<form action="#" method="POST" >
+<form action="/coupons/updatecoupons/{{data}}" method="POST">
 
-<div class="form-row">
+  <div class="form-row">
     <div class="form-group col-md-6">
       <label>Mã giảm giá</label>
       <input type="text" class="form-control" id="coupon_id" name="coupon_id">
     </div>
-</div>
-<div class="form-row">
+  </div>
+  <div class="form-row">
     <div class="form-group col-md-6">
       <label>Giá trị</label>
       <input type="text" class="form-control" id="value" name="value">
     </div>
-</div>
-<div class="form-row">
+  </div>
+  <div class="form-row">
     <div class="form-group col-md-6">
       <label>Số lượng</label>
       <input type="text" class="form-control" id="quantity" name="quantity">
     </div>
-</div>
-<div class="form-row">
+  </div>
+  <div class="form-row">
     <div class="form-group col-md-6">
       <label>Ngày bắt đầu</label>
       <input type="date" class="form-control" id="manufacturing_date" name="manufacturing_date">
     </div>
-</div>
-<div class="form-row">
+  </div>
+  <div class="form-row">
     <div class="form-group col-md-6">
       <label>Ngày kết thúc</label>
       <input type="date" class="form-control" id="expiry_date" name="expiry_date">
     </div>
-</div>
-<!--xem chỗ combobox-->
-<div class="form-row">
+  </div>
+  <!--xem chỗ combobox-->
+  <div class="form-row">
     <div class="form-group col-md-6">
-      <label >Loại giảm giá</label>
+      <label>Loại giảm giá</label>
       <select id="category_id" name="discount_type" class="discount_type">
-        <option>...</option>
+        <option value="1">Phần trăm</option>
+        <option value="0">Tiền mặt</option>
       </select>
     </div>
-</div>
-<!--xem chỗ combobox-->
-<div class="form-row">
+  </div>
+  <!--xem chỗ combobox-->
+  <div class="form-row">
     <div class="form-group col-md-6">
-      <label >Điều kiện sử dụng</label>
-      <select id="category_id" name="proviso" class="proviso">
-        <option>...</option>
-      </select>
+      <label>Điều kiện sử dụng</label>
+      <input id="proviso" name="proviso" class="proviso">
     </div>
-</div>
+  </div>
 
-<div class="form-row">
-     <button type="submit" class="btn btn-primary">Sửa</button>
-</div>
+  <div class="form-row">
+    <button type="submit" class="btn btn-primary">Sửa</button>
+  </div>
 </form>

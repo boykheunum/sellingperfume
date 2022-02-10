@@ -39,6 +39,8 @@
         //update
         $(".btn-danger").click(function (e) {
             let position = $(this);
+            let id = position.val();
+            window.location.replace("/admin/suacoupon/" + id);
         });
 
         //delete

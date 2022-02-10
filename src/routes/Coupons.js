@@ -4,12 +4,12 @@ const CouponsController = require('../controller/CouponsController')
 module.exports = (app) => {
   app.get("/coupons", CouponsController.GetCoupons);
   app.post("/coupons/createcoupons", CouponsController.CreateCoupons);
-  app.put("/coupons/updatecoupons/:id", CouponsController.UpdateCoupons);
+  app.post("/coupons/updatecoupons/:id", CouponsController.UpdateCoupons);
   app.get("/coupons/searchcouponsbyid/:id", CouponsController.GetCouponsById);
   app.delete("/coupons/delete/:id", CouponsController.DeleteCoupons);
-
-   //giao dien
-   app.get('/admin/suacoupon', (req, res) => {
-    res.render('template/admin/suacoupon',{layout: 'mainadmin'});
-  });
+  app.get('/admin/suacoupon/:id', CouponsController.getId);
+  //giao dien
+  //  app.get('/admin/suacoupon', (req, res) => {
+  //   res.render('template/admin/suacoupon',{layout: 'mainadmin'});
+  // });
 };

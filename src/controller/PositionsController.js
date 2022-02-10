@@ -8,7 +8,7 @@ exports.GetPosition = (req, res) => {
                 message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
-            res.render('template/admin/dschucvu',{layout: 'mainadmin', data: data});
+            res.render('template/admin/dschucvu', { layout: 'mainadmin', data: data });
         }
     });
 }
@@ -48,7 +48,7 @@ exports.UpdatePosition = (req, res) => {
     const Position = new position({
         "position_name": req.body.position_name,
     });
-    position.UpdatePosition(Position, req.params.id, (error, data) => {
+    position.UpdatePosition(req.params.id, Position, (error, data) => {
         if (error) {
             res.status(500).send({
                 message: error.message || "Không thể thêm mới"
@@ -79,4 +79,13 @@ exports.CreatePosition = (req, res) => {
             res.send(data);
         }
     });
+}
+
+exports.getId = (req, res) => {
+    let id = req.params.id;
+    res.render('template/admin/suachucvu',
+        {
+            layout: 'mainadmin',
+            data: id
+        });
 }

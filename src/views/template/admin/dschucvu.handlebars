@@ -3,7 +3,7 @@
         <tr>
             <th scope="col">Mã chức vụ</th>
             <th scope="col">Tên chức vụ</th>
-            
+
             <th>#</th>
         </tr>
     </thead>
@@ -15,7 +15,8 @@
             <th scope="row">{{this.username_name}}</th>
             <td>
                 <button type="button" class="btn btn-secondary" id="{{this.position_id}}">Thêm</button>
-                <button type="button" class="btn btn-danger" id="{{this.position_id}}" value="{{this.position_id}}">Sửa</button>
+                <button type="button" class="btn btn-danger" id="{{this.position_id}}"
+                    value="{{this.position_id}}">Sửa</button>
                 <button type="button" class="btn btn-success" id="{{this.position_id}}"
                     value="{{this.position_id}}">Xóa</button>
             </td>
@@ -30,6 +31,8 @@
         //update
         $(".btn-danger").click(function (e) {
             let position = $(this);
+            let id = position.val();
+            window.location.replace("/admin/suachucvu/" + id);
         });
 
         //delete

@@ -50,7 +50,7 @@ Positions.SearchPositionDetalById = (id, result) => {
 }
 
 Positions.UpdatePosition = (id, position, result) => {
-    db.query("UPDATE positions SET position_name=? WHERE position_id=?", [position.name, id],
+    db.query("UPDATE `positions` SET `position_name`= ? WHERE `position_id` = ?", [position.position_name, id],
         (err, res) => {
             if (err) {
                 result(err, null);

@@ -92,3 +92,12 @@ exports.CreateCoupons = (req, res) => {
         }
     });
 }
+
+exports.getId = (req, res) => {
+    let id = req.params.id;
+    res.render('template/admin/suacoupon',
+        {
+            layout: 'mainadmin',
+            data: id
+        });
+}

@@ -2,7 +2,7 @@ const categories = require('../model/CategoriesModel');
 const CONTANTS = require('../database/contains');
 
 exports.getCategories = (req, res) => {
-    
+
     categories.GetAllCategory((err, data) => {
         console.log("Hello");
         if (err) {
@@ -11,10 +11,10 @@ exports.getCategories = (req, res) => {
             });
         } else {
             res.render('template/admin/dsloaisp',
-            {
-                layout: 'mainadmin',
-                data:data
-            });
+                {
+                    layout: 'mainadmin',
+                    data: data
+                });
         }
     });
 }
@@ -84,4 +84,15 @@ exports.CreateCategories = (req, res) => {
             res.send(data);
         }
     });
+
+}
+
+exports.getId = (req, res) => {
+    let id = req.params.id;
+    
+    res.render('template/admin/sualoaisp',
+        {
+            layout: 'mainadmin',
+            data: id
+        });
 }

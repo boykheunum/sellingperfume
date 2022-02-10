@@ -9,10 +9,11 @@ const Coupons = function (coupon) {
     this.discount_type = coupon.discount_type;
     this.state = coupon.state;
     this.proviso = coupon.proviso;
+    this.code = coupon.code;
 }
 
 Coupons.AddCoupon = (coupon, result) => {
-    db.query("INSERT INTO coupons(value, quantity, manufacturing_date, expiry_date,proviso) VALUES (?,?,?,?,?)", [coupon.value, coupon.quantity, coupon.manufacturing_date, coupon.expiry_date, coupon.proviso],
+    db.query("INSERT INTO coupons(value, quantity, manufacturing_date, expiry_date,proviso,code) VALUES (?,?,?,?,?,?)", [coupon.value, coupon.quantity, coupon.manufacturing_date, coupon.expiry_date, coupon.proviso],
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -58,7 +59,7 @@ Coupons.SearchCouponsById = (id, result) => {
 }
 
 Coupons.UpadteCoupons = (coupon, id, result) => {
-    db.query("UPDATE coupons SET value=?,quantity=?,manufacturing_date=?,expiry_date=?,proviso=? WHERE coupon_id=?", [coupon.value, coupon.quantity, coupon.manufacturing_date, coupon.expiry_date, coupon.proviso, id],
+    db.query("UPDATE coupons SET value=?,quantity=?,manufacturing_date=?,expiry_date=?,proviso=?, code=? WHERE coupon_id=?", [coupon.value, coupon.quantity, coupon.manufacturing_date, coupon.expiry_date, coupon.proviso, coupon.code, id],
         (err, res) => {
             if (err) {
                 result(err, null);

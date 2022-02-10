@@ -55,6 +55,7 @@ exports.UpdateCoupons = (req, res) => {
         "manufacturing_date": req.body.manufacturing_date,
         "expiry_date": req.body.expiry_date,
         "proviso": req.body.proviso,
+        "code":req.body.code
     });
     coupons.UpadteCoupons(Coupon, req.params.id, (error, data) => {
         if (error) {
@@ -80,6 +81,7 @@ exports.CreateCoupons = (req, res) => {
         "manufacturing_date": req.body.manufacturing_date,
         "expiry_date": req.body.expiry_date,
         "proviso": req.body.proviso,
+        "code":req.body.code
     });
     coupons.AddCoupon(Coupon, (error, data) => {
         if (error) {

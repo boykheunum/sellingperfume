@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 04, 2022 lúc 02:42 PM
+-- Thời gian đã tạo: Th2 10, 2022 lúc 03:40 PM
 -- Phiên bản máy phục vụ: 10.4.21-MariaDB
--- Phiên bản PHP: 7.4.23
+-- Phiên bản PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -70,8 +70,8 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`category_id`, `category_name`, `state`) VALUES
-(1, 'Female', 0),
-(2, 'hhh', 1);
+(1, 'linh', 0),
+(2, 'alo', 1);
 
 -- --------------------------------------------------------
 
@@ -87,8 +87,16 @@ CREATE TABLE `coupons` (
   `expiry_date` date NOT NULL COMMENT 'ngày kết thúc',
   `discount_type` tinyint(1) NOT NULL,
   `state` tinyint(1) NOT NULL DEFAULT 1,
-  `proviso` int(11) NOT NULL
+  `proviso` int(11) NOT NULL,
+  `code` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `coupons`
+--
+
+INSERT INTO `coupons` (`coupon_id`, `value`, `quantity`, `manufacturing_date`, `expiry_date`, `discount_type`, `state`, `proviso`, `code`) VALUES
+(1, 10, 1000, '2022-02-01', '2022-02-11', 1, 1, 80000, '');
 
 -- --------------------------------------------------------
 
@@ -120,6 +128,14 @@ CREATE TABLE `positions` (
   `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `positions`
+--
+
+INSERT INTO `positions` (`position_id`, `position_name`, `status`) VALUES
+(1, 'linh', 1),
+(2, 'dat', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -139,6 +155,14 @@ CREATE TABLE `products` (
   `state` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Đang đổ dữ liệu cho bảng `products`
+--
+
+INSERT INTO `products` (`product_id`, `category_id`, `product_name`, `price`, `importprice`, `image`, `description`, `quantity`, `date`, `state`) VALUES
+(1, 1, 'sdf', 1000, 1000, '1000', '00000', 0, '0000-00-00', 0),
+(2, 1, 'sdf', 1000, 1000, '1000', '00000', 0, '0000-00-00', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -154,13 +178,6 @@ CREATE TABLE `store_info` (
   `store_email` varchar(100) NOT NULL,
   `store_address` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `store_info`
---
-
-INSERT INTO `store_info` (`store_id`, `store_name`, `lat`, `lng`, `store_phone`, `store_email`, `store_address`) VALUES
-(1, 'Bán nước hoa', 21.038334607105465, 105.8088702693146, '0978456214', 'nuochoa@gmail.com', 'Thành phố Hà Nội.');
 
 -- --------------------------------------------------------
 
@@ -189,7 +206,7 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `username`, `password`, `name`, `birthday`, `phone`, `email`, `address`, `avatar`, `sex`, `status_user`) VALUES
 (1, '[value-2]', '[value-3]', '[value-4]', '0000-00-00', '[value-6]', '[value-7]', '[value-8]', '[value-9]', 0, 1),
 (2, '1jkhh', 'hjhjh', '', '2014-12-10', '014755555', '', '', '', 0, 1),
-(3, '01', '?', '?', '2000-10-10', '?', '?', '?', '?', 1, 1);
+(3, '01', '?', '?', '2000-10-10', '?', '?', '?', '?', 1, 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -281,7 +298,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `employees`
@@ -293,19 +310,19 @@ ALTER TABLE `employees`
 -- AUTO_INCREMENT cho bảng `positions`
 --
 ALTER TABLE `positions`
-  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `position_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `store_info`
 --
 ALTER TABLE `store_info`
-  MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `user`

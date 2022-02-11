@@ -107,19 +107,6 @@ exports.getId = (req, res) => {
                 message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
-<<<<<<< HEAD
-            employees.SearchEmployeeById(id, (err, data_old) => {
-                if (err) {
-                    res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
-                        message: err.message || "Đã xảy ra một số lỗi",
-                    });
-                } else {
-                    res.render('template/admin/suanv', { layout: 'mainadmin', data:id, listPosition:listPosition, employee: data_old});
-                }
-            });
-        
-           
-=======
             res.render('template/admin/suanv', { layout: 'mainadmin', data: id, listPosition: data });
         }
     });
@@ -133,7 +120,6 @@ exports.LayoutCreateEmployees = (req, res) => {
             });
         } else {
             res.render('template/admin/themnv', { layout: 'mainadmin', listPosition: data });
->>>>>>> f4da31ba4054fca448098e44b89868230eda2395
         }
     });
 }

@@ -17,7 +17,10 @@ module.exports = (app) => {
   app.get('/home/dangnhap', (req, res) => {
   res.render('template/user/dangnhap', {layout: 'main'} );
    });
-
+   app.get('/home/dangky', (req, res) => {
+    res.render('template/user/dangky', {layout: 'main'} );
+     });
+  
 
 
 };

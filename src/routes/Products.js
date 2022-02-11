@@ -11,7 +11,10 @@ module.exports = (app) => {
   //giao dien
   app.get('/admin/addproduct', ProductController.LayoutCreateProduct);
   //giao dien
-  // app.get('/admin/suasp', (req, res) => {
-  //   res.render('template/admin/suasp',{layout: 'mainadmin'});
-  // });
+  app.get('/home', (req, res) => {
+  res.render('template/user/sanpham',{layout: 'main'});
+  });
+  app.get('/home/ctsanpham', (req, res) => {
+    res.render('template/user/ctsp',{layout: 'main'});
+    });
 };

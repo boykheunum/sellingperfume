@@ -28,6 +28,13 @@
 
 <script>
     $(document).ready(function () {
+
+        //create
+        $(".btn-secondary").click(function (e) {
+            let position = $(this);
+            
+            window.location.replace("/admin/createpositon");
+        });
         //update
         $(".btn-danger").click(function (e) {
             let position = $(this);

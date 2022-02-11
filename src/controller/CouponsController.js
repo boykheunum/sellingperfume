@@ -54,10 +54,11 @@ exports.UpdateCoupons = (req, res) => {
         "quantity": req.body.quantity,
         "manufacturing_date": req.body.manufacturing_date,
         "expiry_date": req.body.expiry_date,
+        "discount_type": req.body.discount_type,
         "proviso": req.body.proviso,
         "code":req.body.code
     });
-    coupons.UpadteCoupons(Coupon, req.params.id, (error, data) => {
+    coupons.UpdteCoupons(Coupon, req.params.id, (error, data) => {
         if (error) {
             res.status(500).send({
                 message: error.message || "Không thể thêm mới"
@@ -80,6 +81,7 @@ exports.CreateCoupons = (req, res) => {
         "quantity": req.body.quantity,
         "manufacturing_date": req.body.manufacturing_date,
         "expiry_date": req.body.expiry_date,
+        "discount_type": req.body.discount_type,
         "proviso": req.body.proviso,
         "code":req.body.code
     });
@@ -101,5 +103,15 @@ exports.getId = (req, res) => {
         {
             layout: 'mainadmin',
             data: id
+        });
+}
+
+
+
+exports.LayoutCreateCoupons = (req, res) => {
+    
+    res.render('template/admin/themcoupon',
+        {
+            layout: 'mainadmin',
         });
 }

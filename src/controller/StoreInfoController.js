@@ -93,3 +93,19 @@ exports.DeleteStore = (req, res) => {
     }
   });
 }
+exports.getId = (req, res) => {
+  let id = req.params.id;
+  res.render('template/admin/suainfo',
+      {
+          layout: 'mainadmin',
+          data: id
+      });
+}
+
+exports.LayoutCreateInfo = (req, res) => {
+  
+  res.render('template/admin/themttch',
+      {
+          layout: 'mainadmin',
+      });
+}

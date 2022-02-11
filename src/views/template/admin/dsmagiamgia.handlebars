@@ -23,7 +23,7 @@
             <th scope="row">{{this.discount_type}}</th>
             <th scope="row">{{this.proviso}}</th>
             <td>
-                <button type="button" class="btn btn-secondary" id="{{this.coupon_id}}">Thêm</button>
+                <button type="button" class="btn btn-secondary">Thêm</button>
                 <button type="button" class="btn btn-danger" id="{{this.coupon_id}}"
                     value="{{this.coupon_id}}">Sửa</button>
                 <button type="button" class="btn btn-success" id="{{this.coupon_id}}"
@@ -55,6 +55,12 @@
                     alert("thanh cong")
                 }
             })
+        });
+        //create
+        $(".btn-secondary").click(function (e) {
+            let position = $(this);
+            
+            window.location.replace("/admin/addcoupons");
         });
     });
 </script>

@@ -7,10 +7,8 @@ module.exports = (app) => {
   app.post("/Position/create", PositionController.CreatePosition);
   app.get("/Position/searchPositionbyid/:id", PositionController.GetPositionById);
   app.delete("/Position/delete/:id", PositionController.DeletePosition);
+ //admin them, sua chuc vu
   app.get('/admin/suachucvu/:id', PositionController.getId);
+  app.get('/admin/createposition', PositionController.LayoutCreatePositions);
 
-  //giao dien
-  // app.get('/admin/suachucvu/:id', (req, res) => {
-  //   res.render('template/admin/suachucvu',{layout: 'mainadmin'});
-  // });
 };

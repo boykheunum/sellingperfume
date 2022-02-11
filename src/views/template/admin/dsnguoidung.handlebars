@@ -29,7 +29,7 @@
             <th scope="row">{{this.avatar}}</th>
             <th scope="row">{{this.sex}}</th>
 
-            
+
 
             <td>
                 <button type="button" class="btn btn-secondary" id="{{this.user_id}}">Thêm</button>
@@ -48,6 +48,9 @@
         //update
         $(".btn-danger").click(function (e) {
             let position = $(this);
+            let id = position.val();
+            window.location.replace("/admin/suauser/" + id);
+
         });
 
         //delete

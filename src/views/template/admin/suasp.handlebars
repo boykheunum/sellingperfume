@@ -1,63 +1,58 @@
-<form action="#" method="POST" >
-<div class="form-row">
+<form action="/product/updateproduct/{{data}}" method="POST" enctype="multipart/form-data">
+  <div class="form-row">
     <!--xem chỗ combobox-->
     <div class="form-group col-md-6">
-      <label >Loại sản phẩm</label>
+      <label>Loại sản phẩm</label>
       <select id="category_id" name="category_id" class="form-control">
-        <option selected>Loại sản phẩm</option>
-        <option>...</option>
+        {{#each listCategory}}
+        <option {{this.category_id}}>{{this.category_name }}</option>
+        {{/each}}
       </select>
     </div>
-</div>
-<div class="form-row">
-    <div class="form-group col-md-6">
-      <label>Mã sản phẩm</label>
-      <input type="text" class="form-control" id="product_id" name="product_id">
-    </div>
-</div>
-<div class="form-row">
+  </div>
+  <div class="form-row">
     <div class="form-group col-md-6">
       <label>Tên sản phẩm</label>
       <input type="text" class="form-control" id="product_name" name="product_name">
     </div>
-</div>
-<div class="form-row">
+  </div>
+  <div class="form-row">
     <div class="form-group col-md-6">
       <label>Giá nhập</label>
       <input type="text" class="form-control" id="price" name="price">
     </div>
-</div>
-<div class="form-row">
+  </div>
+  <div class="form-row">
     <div class="form-group col-md-6">
       <label>Giá bán</label>
       <input type="text" class="form-control" id="importprice" name="importprice">
     </div>
-</div>
-<div class="form-row">
-  <div class="form-group col-md-6">
-    <label >Chọn ảnh</label>
-    <input type="file" class="form-control-file" id="image" name="image">
   </div>
-</div>
-<div class="form-row">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Chọn ảnh</label>
+      <input type="file" class="form-control-file" id="hinhanh" name="hinhanh">
+    </div>
+  </div>
+  <div class="form-row">
     <div class="form-group col-md-6">
       <label>Mô tả</label>
       <input type="text" class="form-control" id="description" name="description">
     </div>
-</div>
-<div class="form-row">
+  </div>
+  <div class="form-row">
     <div class="form-group col-md-6">
       <label>Số lượng</label>
       <input type="text" class="form-control" id="quantity" name="quantity">
     </div>
-</div>
-<div class="form-row">
+  </div>
+  <div class="form-row">
     <div class="form-group col-md-6">
       <label>Ngày nhập</label>
       <input type="date" class="form-control" id="date" name="date">
     </div>
-</div>
-<div class="form-row">
-     <button type="submit" class="btn btn-primary">Sửa</button>
-</div>
+  </div>
+  <div class="form-row">
+    <button type="submit" class="btn btn-primary">Sửa</button>
+  </div>
 </form>

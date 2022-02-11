@@ -13,7 +13,7 @@ const Coupons = function (coupon) {
 }
 
 Coupons.AddCoupon = (coupon, result) => {
-    db.query("INSERT INTO coupons(value, quantity, manufacturing_date, expiry_date,proviso,code) VALUES (?,?,?,?,?,?)", [coupon.value, coupon.quantity, coupon.manufacturing_date, coupon.expiry_date, coupon.proviso],
+    db.query("INSERT INTO coupons(value, quantity, manufacturing_date, expiry_date,proviso, code) VALUES (?,?,?,?,?,?)", [coupon.value, coupon.quantity, coupon.manufacturing_date, coupon.expiry_date, coupon.proviso, coupon.code],
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -27,7 +27,7 @@ Coupons.AddCoupon = (coupon, result) => {
 }
 
 Coupons.GetAllCoupon = (result) => {
-    db.query("SELECT * FROM coupons WHERE state = ?",[1],
+    db.query("SELECT * FROM coupons WHERE state = ?", [1],
         (err, res) => {
             if (err) {
                 result(err, null);

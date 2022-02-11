@@ -1,4 +1,5 @@
 const employees = require('../model/EmployeesModel');
+const position = require('../model/PositionsModel');
 const CONTANTS = require('../database/contains');
 
 exports.GetEmployees = (req, res) => {
@@ -52,10 +53,10 @@ exports.UpdateEmployees = (req, res) => {
         "address": req.body.address,
         "sex": req.body.sex,
         "phone": req.body.phone,
-        "image": req.body.image,
+        "image": req.file.image,
         "position_id": req.body.position_id,
     });
-    employees.UpdateEmployee(req.params.id,Employee, (error, data) => {
+    employees.UpdateEmployee(req.params.id, Employee, (error, data) => {
         if (error) {
             res.status(500).send({
                 message: error.message || "Không thể thêm mới"
@@ -90,6 +91,19 @@ exports.CreateEmployees = (req, res) => {
         }
         else {
             res.send(data);
+        }
+    });
+}
+
+exports.getId = (req, res) => {
+    let id = req.params.id;
+    position.GetAllPositions((err, data) => {
+        if (err) {
+            res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
+                message: err.message || "Đã xảy ra một số lỗi",
+            });
+        } else {
+            res.render('template/admin/suanv', { layout: 'mainadmin', data:id, listPosition:data });
         }
     });
 }

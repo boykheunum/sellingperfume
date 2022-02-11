@@ -1,11 +1,4 @@
-<form action="#" method="POST">
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label>Mã người dùng</label>
-            <input type="text" class="form-control" id="user_id" name="user_id">
-        </div>
-    </div>
+<form action="/user/updateuser/{{data}}" method="POST" enctype="multipart/form-data">
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>Tên tài khoản</label>
@@ -15,7 +8,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>Mật khẩu</label>
-            <input type="text" class="form-control" id="password" name="password">
+            <input type="password" class="form-control" id="password" name="password">
         </div>
     </div>
     <div class="form-row">
@@ -51,7 +44,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>Chọn ảnh</label>
-            <input type="file" class="form-control-file" id="avatar" name="avatar">
+            <input type="file" class="form-control-file" id="hinhanh" name="hinhanh">
         </div>
     </div>
     <!--chỉnh lại radio giới tính-->
@@ -60,12 +53,12 @@
             <div class="form-check form-check-inline">
                 <label>Giới tính</label>
                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
-                    value="option1">
+                    value="0">
                 <label class="form-check-label" for="inlineRadio1">Nam</label>
             </div>
             <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
-                    value="option2">
+                    value="1">
                 <label class="form-check-label" for="inlineRadio2">Nữ</label>
             </div>
         </div>

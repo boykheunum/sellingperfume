@@ -3,13 +3,19 @@ const bodyParser = require("body-parser");
 const app = express();
 const expressHbs = require('express-handlebars');
 const { engine } = require('express-handlebars');
-app.use('/src/views/static',express.static('./src/views/static'));
-app.use('/src/views',express.static('./src/views')); 
+
+const upload = require('./src/middleware/uploadfile');
+
+app.use('/src/views/img', express.static('./src/views/img'));
+app.use('/src/views/static', express.static('./src/views/static'));
+
+app.use('/src/views', express.static('./src/views'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.engine('handlebars', engine());
 app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/src/views');
+app.use(upload);
 
 
 require("./src/routes/User")(app);
@@ -27,6 +33,9 @@ app.get("/", (req, res) => {
     res.json({ message: "Welcome to NewsApp application." });
 
 });
+
+// SET STORAGE
+
 
 app.listen(4000, () => {
 

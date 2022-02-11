@@ -70,7 +70,7 @@ exports.UpdateUser = (req, res) => {
         phone: req.body.phone,
         email: req.body.email,
         address: req.body.address,
-        avatar: req.body.avatar,
+        avatar: req.file.filename,
 
     });
     user.UpdateUser(User, req.params.id, (error, data) => {
@@ -114,4 +114,13 @@ exports.Login = (req, res) => {
             res.status(CONTANTS.STATUS_CODE.SUCCESS).send(data);
         }
     });
+}
+
+exports.getId = (req, res) => {
+    let id = req.params.id;
+    res.render('template/admin/suauser',
+        {
+            layout: 'mainadmin',
+            data: id
+        });
 }

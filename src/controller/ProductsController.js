@@ -1,4 +1,5 @@
 const product = require('../model/ProductsModel');
+const categories = require('../model/CategoriesModel');
 const CONTANTS = require('../database/contains');
 
 exports.GetProduct = (req, res) => {
@@ -8,7 +9,7 @@ exports.GetProduct = (req, res) => {
         message: err.message || "Đã xảy ra một số lỗi",
       });
     } else {
-        res.render('template/admin/dssanpham',{layout: 'mainadmin', data: data});
+      res.render('template/admin/dssanpham', { layout: 'mainadmin', data: data });
     }
   });
 }
@@ -61,12 +62,11 @@ exports.UpdateProduct = (req, res) => {
     });
   }
   const products = new product({
-
     category_id: req.body.category_id,
     product_name: req.body.product_name,
     price: req.body.price,
     importprice: req.body.importprice,
-    image: req.body.image,
+    image: req.file.hinhanh,
     description: req.body.description,
     quantity: req.body.quantity,
     date: req.body.date,
@@ -84,8 +84,6 @@ exports.UpdateProduct = (req, res) => {
 
 }
 exports.DeleteProduct = (req, res) => {
-
-  
   product.DeleteProducts(req.params.id, (err) => {
     if (err) {
       res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
@@ -96,3 +94,21 @@ exports.DeleteProduct = (req, res) => {
     }
   });
 }
+
+exports.getId = (req, res) => {
+  let id = req.params.id;
+  categories.GetAllCategory((err, data) => {
+
+    if (err) {
+      res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
+        message: err.message || "Đã xảy ra một số lỗi",
+      });
+    } else {
+      res.render('template/admin/suasp', { layout: 'mainadmin', data: id, listCategory: data });
+    }
+  });
+
+}
+
+
+

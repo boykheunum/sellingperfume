@@ -5,15 +5,15 @@ module.exports = (app) => {
   app.get("/user", UserController.GetUser);
   app.get("/user/searchuserbyid/:id", UserController.GetUserById);
   app.post("/user/createuser", UserController.CreateUser);
-  app.put("/user/updateuser/:id", UserController.UpdateUser);
+  app.post("/user/updateuser/:id", UserController.UpdateUser);
   app.delete("/user/delete/:id", UserController.DeleteUser)
- 
+  app.get('/admin/suauser/:id', UserController.getId);
 
 
 
-  
-  app.get('/admin/suauser', (req, res) => {
-    res.render('template/admin/suauser',{layout: 'mainadmin'});
-  });
+
+  // app.get('/admin/suauser/:id', (req, res) => {
+  //   res.render('template/admin/suauser',{layout: 'mainadmin'});
+  // });
 
 };

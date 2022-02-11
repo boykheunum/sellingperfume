@@ -8,7 +8,8 @@
             <th scope="col">Ngày kết thúc</th>
             <th scope="col">Loại giảm giá</th>
             <th scope="col">Điều kiện sử dụng</th>
-            <th scope="col">Chức năng</th>
+            <th scope="col">Code</th>
+            <th scope="col">#</th>
         </tr>
     </thead>
     <tbody>
@@ -22,6 +23,7 @@
             <th scope="row">{{this.expiry_date}}</th>
             <th scope="row">{{this.discount_type}}</th>
             <th scope="row">{{this.proviso}}</th>
+            <th scope="row">{{this.code}}</th>
             <td>
                 <button type="button" class="btn btn-secondary" id="{{this.coupon_id}}">Thêm</button>
                 <button type="button" class="btn btn-danger" id="{{this.coupon_id}}"

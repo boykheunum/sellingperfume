@@ -7,10 +7,10 @@ module.exports = (app) => {
   app.put("/employees/update/:id", EmployeesController.UpdateEmployees);
   app.get("/employees/searchemployeesbyid/:id", EmployeesController.GetEmployeesById);
   app.delete("/employees/delete/:id", EmployeesController.DeleteEmployees);
+  app.get('/admin/suanv', EmployeesController.getId);
 
-
-   //giao dien
-   app.get('/admin/suanv', (req, res) => {
-    res.render('template/admin/suanv',{layout: 'mainadmin'});
-  });
+  //giao dien
+  // app.get('/admin/suanv', (req, res) => {
+  //   res.render('template/admin/suanv', { layout: 'mainadmin' });
+  // });
 };

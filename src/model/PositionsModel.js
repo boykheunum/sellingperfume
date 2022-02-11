@@ -13,7 +13,9 @@ Positions.AddPosition = (position, result) => {
                 result(err, null);
                 return;
             }
-            result(null, res);
+            result(null, {
+                message: "Thêm mới thành công",
+            });
         })
 }
 

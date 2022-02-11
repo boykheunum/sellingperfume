@@ -13,7 +13,10 @@ const Coupons = function (coupon) {
 }
 
 Coupons.AddCoupon = (coupon, result) => {
-    db.query("INSERT INTO coupons(value, quantity, manufacturing_date, expiry_date,proviso, code) VALUES (?,?,?,?,?,?)", [coupon.value, coupon.quantity, coupon.manufacturing_date, coupon.expiry_date, coupon.proviso, coupon.code],
+
+
+    db.query("INSERT INTO coupons(value, quantity, manufacturing_date, expiry_date,discount_type,proviso,code) VALUES (?,?,?,?,?,?,?)", [coupon.value, coupon.quantity, coupon.manufacturing_date, coupon.expiry_date, coupon.discount_type, coupon.proviso, coupon.code],
+
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -59,7 +62,7 @@ Coupons.SearchCouponsById = (id, result) => {
 }
 
 Coupons.UpadteCoupons = (coupon, id, result) => {
-    db.query("UPDATE coupons SET value=?,quantity=?,manufacturing_date=?,expiry_date=?,proviso=?, code=? WHERE coupon_id=?", [coupon.value, coupon.quantity, coupon.manufacturing_date, coupon.expiry_date, coupon.proviso, coupon.code, id],
+    db.query("UPDATE coupons SET value=?,quantity=?,manufacturing_date=?,expiry_date=?,discount_type=?, proviso=?, code=? WHERE coupon_id=?", [coupon.value, coupon.quantity, coupon.manufacturing_date, coupon.expiry_date, coupon.discount_type, coupon.proviso, coupon.code, id],
         (err, res) => {
             if (err) {
                 result(err, null);

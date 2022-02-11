@@ -7,13 +7,16 @@ const Categories = function (category) {
 }
 
 Categories.AddCategory = (category, result) => {
-    db.query("INSERT INTO categories (category_id, category_name) VALUES (?,?)", [category.category_id, category.category_name],
+    db.query("INSERT INTO categories (category_name) VALUES (?)", [category.category_name],
         (err, res) => {
             if (err) {
                 result(err, null);
                 return;
             }
-            result(null, res);
+            result(null,  {
+                message: "Them moi thanh cong",
+                id: res.insertId, ...Categories
+            });
         });
 }
 

@@ -96,3 +96,11 @@ exports.getId = (req, res) => {
             data: id
         });
 }
+
+exports.LayoutCreateCategory = (req, res) => {
+    
+    res.render('template/admin/themloaisp',
+        {
+            layout: 'mainadmin',
+        });
+}

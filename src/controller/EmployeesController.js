@@ -9,7 +9,11 @@ exports.GetEmployees = (req, res) => {
                 message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
-            res.status(CONTANTS.STATUS_CODE.SUCCESS).send(data);
+            res.render('template/admin/dsnv',
+            {
+                layout: 'mainadmin',
+                data:data
+            });
         }
     });
 }

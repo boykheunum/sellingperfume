@@ -11,5 +11,8 @@ module.exports = (app) => {
   //app.get('/admin/sualoaisp/:id', (req, res) => {
   //  res.render('template/admin/sualoaisp', { layout: 'mainadmin' });
   //});
-    //app.get('/admin/sualoaisp/:id', categoriesController.getId);
+    //app.get('/admin/sualoaisp/:id', categoriesController.getId); 
+
+  //admin them
+  app.get('/admin/createcategory', categoriesController.LayoutCreateCategory);
 }

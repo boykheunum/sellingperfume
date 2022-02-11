@@ -89,3 +89,11 @@ exports.getId = (req, res) => {
             data: id
         });
 }
+
+exports.LayoutCreatePositions = (req, res) => {
+    
+    res.render('template/admin/themcv',
+        {
+            layout: 'mainadmin',
+        });
+}

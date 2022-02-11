@@ -62,7 +62,7 @@ Employees.SearchEmployeeById = (id, result) => {
 }
 
 Employees.UpdateEmployee = (id, employees, result) => {
-    db.query("UPDATE `employees` SET `employee_name`=?,`birthday`=?,`address`=?,`sex`=?,`phone`=?,`image`=?,`position_id`=? WHERE employee_id=?", [employees.employee_name, employees.employee_birthday, employees.address, employees.sex, employees.phone, employees.image, employees.position_id, id],
+    db.query("UPDATE `employees` SET `employee_name`=?,`birthday`=?,`address`=?,`sex`=?,`phone`=?,`image`=?,`position_id`=? WHERE employee_id=?", [employees.employee_name, employees.birthday, employees.address, employees.sex, employees.phone, employees.image, employees.position_id, id],
         (err, res) => {
             if (err) {
                 result(err, null);

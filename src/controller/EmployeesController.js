@@ -101,13 +101,24 @@ exports.CreateEmployees = (req, res) => {
 
 exports.getId = (req, res) => {
     let id = req.params.id;
-    position.GetAllPositions((err, data) => {
+    position.GetAllPositions((err, listPosition) => {
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
                 message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
-            res.render('template/admin/suanv', { layout: 'mainadmin', data:id, listPosition:data });
+            employees.SearchEmployeeById(id, (err, data_old) => {
+                if (err) {
+                    res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
+                        message: err.message || "Đã xảy ra một số lỗi",
+                    });
+                } else {
+                    res.render('template/admin/suanv', { layout: 'mainadmin', data:id, listPosition:listPosition, employee: data_old});
+                }
+            });
+        
+           
         }
     });
 }
+

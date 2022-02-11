@@ -41,7 +41,7 @@ exports.CreateUser = (req, res) => {
         phone: req.body.phone,
         email: req.body.email,
         address: req.body.address,
-        avatar: req.body.avatar,
+        avatar: req.file.hinhanh,
         sex: req.body.sex,
     });
     user.AddUser(User, (error, data) => {
@@ -70,7 +70,7 @@ exports.UpdateUser = (req, res) => {
         phone: req.body.phone,
         email: req.body.email,
         address: req.body.address,
-        avatar: req.file.filename,
+        avatar: req.file.hinhanh,
 
     });
     user.UpdateUser(User, req.params.id, (error, data) => {

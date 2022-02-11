@@ -10,10 +10,13 @@ module.exports = (app) => {
   app.get('/admin/suauser/:id', UserController.getId);
 
 
-
-
   // app.get('/admin/suauser/:id', (req, res) => {
   //   res.render('template/admin/suauser',{layout: 'mainadmin'});
   // });
+  app.get('/home/dangnhap', (req, res) => {
+  res.render('template/user/dangnhap', {layout: 'main'} );
+   });
+
+
 
 };

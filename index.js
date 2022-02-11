@@ -3,12 +3,12 @@ const bodyParser = require("body-parser");
 const app = express();
 const expressHbs = require('express-handlebars');
 const { engine } = require('express-handlebars');
-
+var cookieParser = require('cookie-parser');
 const upload = require('./src/middleware/uploadfile');
 
 app.use('/src/views/img', express.static('./src/views/img'));
 app.use('/src/views/static', express.static('./src/views/static'));
-
+app.use(cookieParser());
 app.use('/src/views', express.static('./src/views'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -1,4 +1,4 @@
-<form action="/employees/update/{{data}}" method="POST" enctype="multipart/form-data">
+<form action="/employees/create" method="POST" enctype="multipart/form-data">
     <!--xem chỗ combobox-->
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -10,15 +10,13 @@
             </select>
         </div>
     </div>
-    {{#each employee}} 
-    <!--có thời gian hãng làm -->
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>Tên nhân viên</label>
-            <input type="text" class="form-control" id="employee_name" name="employee_name" value="{{this.employee_name}}">
+            <input type="text" class="form-control" id="employee_name" name="employee_name">
         </div>
     </div>
-    {{/each}}
+    
     <div class="form-row">
         <div class="form-group col-md-6">
             <label>Ngày sinh</label>

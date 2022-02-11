@@ -8,6 +8,7 @@ module.exports = (app) => {
   app.post("/user/updateuser/:id", UserController.UpdateUser);
   app.delete("/user/delete/:id", UserController.DeleteUser)
   app.get('/admin/suauser/:id', UserController.getId);
+  app.get('/admin/adduser', UserController.LayoutCreateUser);
 
 
   // app.get('/admin/suauser/:id', (req, res) => {

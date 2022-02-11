@@ -38,7 +38,7 @@ exports.CreateProduct = (req, res) => {
     product_name: req.body.product_name,
     price: req.body.price,
     importprice: req.body.importprice,
-    image: req.body.image,
+    image: req.file.filename,
     description: req.body.description,
     quantity: req.body.quantity,
     date: req.body.date,
@@ -66,7 +66,7 @@ exports.UpdateProduct = (req, res) => {
     product_name: req.body.product_name,
     price: req.body.price,
     importprice: req.body.importprice,
-    image: req.file.hinhanh,
+    image: req.file.filename,
     description: req.body.description,
     quantity: req.body.quantity,
     date: req.body.date,
@@ -108,6 +108,20 @@ exports.getId = (req, res) => {
     }
   });
 
+}
+
+exports.LayoutCreateProduct = (req, res)=> {
+  categories.GetAllCategory((err, data) => {
+
+    if (err) {
+      res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
+        message: err.message || "Đã xảy ra một số lỗi",
+      });
+    } else {
+      res.render('template/admin/themsanpham', { layout: 'mainadmin', listCategory: data });
+    }
+  });
+  
 }
 
 

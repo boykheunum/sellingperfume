@@ -1,0 +1,83 @@
+
+<section>
+
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+
+                    <form action="/user/sigin" method="POST" enctype="multipart/form-data">
+                        <div class="form-row">
+                            <div class="form-outline mb-4">
+                                <label style="display: flex">Tên tài khoản</label>
+                                <input type="text" class="form-control" id="username" name="username">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-outline mb-4">
+                                <label style="display: flex">Mật khẩu</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-outline mb-4">
+                                <label style="display: flex">Họ Tên người dùng</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-outline mb-4">
+                                <label style="display: flex">Ngày sinh</label>
+                                <input type="date" class="form-control" id="birthday" name="birthday">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-outline mb-4">
+                                <label style="display: flex">Số điện thoại</label>
+                                <input type="text" class="form-control" id="phone" name="phone">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-outline mb-4">
+                                <label style="display: flex">Email</label>
+                                <input type="text" class="form-control" id="email" name="email">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-outline mb-4">
+                                <label style="display: flex">Địa chỉ</label>
+                                <input type="text" class="form-control" id="address" name="address">
+                            </div>
+                        </div>
+                        <div class="form-row" style="display:flex">
+                            <div class="form-outline mb-4">
+                                <label style="display: flex">Chọn ảnh</label>
+                                <input type="file" class="form-control-file" id="hinhanh" name="hinhanh">
+                            </div>
+                        </div>
+                        <!--chỉnh lại radio giới tính-->
+                        <div class="form-row" style="display:flex">
+                            <label style="display: flex">Giới tính: </label>
+                            <div class="form-outline mb-4">
+                                
+                                <div class="form-check form-check-inline">
+                                    
+                                    <input class="form-check-input" type="radio" name="sex" id="inlineRadio1" value="0">
+                                    <label class="form-check-label" for="inlineRadio1">Nam</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="inlineRadio2" value="1">
+                                    <label class="form-check-label" for="inlineRadio2">Nữ</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <button type="submit" class="btn btn-primary">Thêm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>

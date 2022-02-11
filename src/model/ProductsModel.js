@@ -62,7 +62,7 @@ Products.UpdateProduct = (id, product, result) => {
 }
 
 Products.SearchProductById = (id, result) => {
-    db.query("SELECT * FROM products WHERE produc_id=? AND state = ?", [id, 1], (err, res) => {
+    db.query("SELECT * FROM products WHERE product_id=? AND state = ?", [id, 1], (err, res) => {
         if (err) {
             result(err, null);
             return;

@@ -11,7 +11,6 @@ module.exports = (app) => {
   //giao dien
   app.get('/admin/addproduct', ProductController.LayoutCreateProduct);
   //giao dien
-  // app.get('/admin/suasp', (req, res) => {
-  //   res.render('template/admin/suasp',{layout: 'mainadmin'});
-  // });
+  app.get('/home', ProductController.HomePage);
+  app.get('/home/chitietsanpham/:id', ProductController.chitietsanpham);
 };

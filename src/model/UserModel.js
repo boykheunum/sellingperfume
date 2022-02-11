@@ -74,8 +74,8 @@ Users.SearchUserById = (id, result) => {
         });
 }
 
-exports.login = (username, password, res) => {
-     db.query("SELECT `username` FROM `user` WHERE `username` = ? AND `password` = ?", [username,password],(err,res)=>{
+Users.login = (username, password, result) => {
+     db.query("SELECT * FROM `user` WHERE `username` = ? AND `password` = ?", [username,password],(err,res)=>{
         if (err) {
             result(err, null);
             return;
@@ -83,8 +83,9 @@ exports.login = (username, password, res) => {
             result(null, res);
             return;
         }
-        result({kind:"Not_found"},null);
+       
      })
+      result({kind:"Not_found"},null);
 }
 
 

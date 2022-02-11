@@ -110,7 +110,7 @@ exports.getId = (req, res) => {
 
 }
 
-exports.LayoutCreateProduct = (req, res)=> {
+exports.LayoutCreateProduct = (req, res) => {
   categories.GetAllCategory((err, data) => {
 
     if (err) {
@@ -121,8 +121,32 @@ exports.LayoutCreateProduct = (req, res)=> {
       res.render('template/admin/themsanpham', { layout: 'mainadmin', listCategory: data });
     }
   });
-  
+
 }
 
+exports.HomePage = (req, res) => {
+  product.GetAllProducts((err, data) => {
+    if (err) {
+      res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
+        message: err.message || "Đã xảy ra một số lỗi",
+      });
+    } else {
+      res.render('template/user/sanpham', { layout: 'main', data: data });
+    }
+  });
 
+}
 
+exports.chitietsanpham = (req, res) => {
+  let id = req.params.id
+  product.SearchProductById(id, (err, data) => {
+    if (err) {
+      res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
+        message: err.message || "Đã xảy ra một số lỗi",
+      });
+    } else {
+      res.render('template/user/ctsp', { layout: 'main', data: data });
+    }
+  });
+
+}

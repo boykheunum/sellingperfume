@@ -10,10 +10,10 @@ exports.GetEmployees = (req, res) => {
             });
         } else {
             res.render('template/admin/dsnv',
-            {
-                layout: 'mainadmin',
-                data:data
-            });
+                {
+                    layout: 'mainadmin',
+                    data: data
+                });
         }
     });
 }
@@ -57,7 +57,7 @@ exports.UpdateEmployees = (req, res) => {
         "address": req.body.address,
         "sex": req.body.sex,
         "phone": req.body.phone,
-        "image": req.file.image,
+        "image": req.file.filename,
         "position_id": req.body.position_id,
     });
     employees.UpdateEmployee(req.params.id, Employee, (error, data) => {
@@ -84,7 +84,7 @@ exports.CreateEmployees = (req, res) => {
         "address": req.body.address,
         "sex": req.body.sex,
         "phone": req.body.phone,
-        "image": req.body.image,
+        "image": req.file.filename,
         "position_id": req.body.position_id,
     });
     employees.AddEmployee(Employee, (error, data) => {
@@ -107,7 +107,19 @@ exports.getId = (req, res) => {
                 message: err.message || "Đã xảy ra một số lỗi",
             });
         } else {
-            res.render('template/admin/suanv', { layout: 'mainadmin', data:id, listPosition:data });
+            res.render('template/admin/suanv', { layout: 'mainadmin', data: id, listPosition: data });
+        }
+    });
+}
+
+exports.LayoutCreateEmployees = (req, res) => {
+    position.GetAllPositions((err, data) => {
+        if (err) {
+            res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
+                message: err.message || "Đã xảy ra một số lỗi",
+            });
+        } else {
+            res.render('template/admin/themnv', { layout: 'mainadmin', listPosition: data });
         }
     });
 }

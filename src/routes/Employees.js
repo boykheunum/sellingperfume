@@ -8,7 +8,7 @@ module.exports = (app) => {
   app.get("/employees/searchemployeesbyid/:id", EmployeesController.GetEmployeesById);
   app.delete("/employees/delete/:id", EmployeesController.DeleteEmployees);
   app.get('/admin/suanv/:id', EmployeesController.getId);
-
+  app.get('/admin/addemployees', EmployeesController.LayoutCreateEmployees);
   //giao dien
   // app.get('/admin/suanv', (req, res) => {
   //   res.render('template/admin/suanv', { layout: 'mainadmin' });

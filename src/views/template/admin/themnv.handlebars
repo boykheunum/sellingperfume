@@ -1,0 +1,63 @@
+<form action="/employees/create" method="POST" enctype="multipart/form-data">
+    <!--xem chỗ combobox-->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Mã chức vụ</label>
+            <select id="position_id" name="position_id" class="form-control">
+                {{#each listPosition}}
+                <option value="{{this.position_id}}">{{this.position_name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Tên nhân viên</label>
+            <input type="text" class="form-control" id="employee_name" name="employee_name">
+        </div>
+    </div>
+    
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Ngày sinh</label>
+            <input type="date" class="form-control" id="birthday" name="birthday">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Địa chỉ</label>
+            <input type="text" class="form-control" id="address" name="address">
+        </div>
+    </div>
+<!--chỉnh lại radio giới tính-->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sex" id="sex"
+                    value="0">
+                <label class="form-check-label" for="inlineRadio1">Nam</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="sex" id="sex"
+                    value="1">
+                <label class="form-check-label" for="inlineRadio2">Nữ</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label>Số điện thoại</label>
+            <input type="text" class="form-control" id="phone" name="phone">
+        </div>
+    </div>
+<div class="form-row">
+  <div class="form-group col-md-6">
+    <label >Chọn ảnh</label>
+    <input type="file" class="form-control-file" id="hinhanh" name="hinhanh">
+  </div>
+</div>
+
+    <div class="form-row">
+        <button type="submit" class="btn btn-primary">Sửa</button>
+    </div>
+</form>

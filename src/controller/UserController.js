@@ -33,6 +33,7 @@ exports.CreateUser = (req, res) => {
             message: "data is null"
         });
     }
+    console.log(req.file)
     const User = new user({
         username: req.body.username,
         password: req.body.password,
@@ -41,8 +42,9 @@ exports.CreateUser = (req, res) => {
         phone: req.body.phone,
         email: req.body.email,
         address: req.body.address,
-        avatar: req.body.avatar,
+        avatar: req.file.filename,
         sex: req.body.sex,
+
     });
     user.AddUser(User, (error, data) => {
         if (error) {
@@ -71,7 +73,7 @@ exports.UpdateUser = (req, res) => {
         email: req.body.email,
         address: req.body.address,
         avatar: req.file.filename,
-        sex:req.body.sex,
+        sex: req.body.sex,
 
     });
     user.UpdateUser(User, req.params.id, (error, data) => {
@@ -123,5 +125,12 @@ exports.getId = (req, res) => {
         {
             layout: 'mainadmin',
             data: id
+        });
+}
+
+exports.LayoutCreateUser = (req, res) => {
+    res.render('template/admin/themuser',
+        {
+            layout: 'mainadmin',
         });
 }

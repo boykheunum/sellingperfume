@@ -25,11 +25,12 @@
             <th scope="row">{{this.description}}</th>
             <th scope="row">{{this.quantity}}</th>
             <th scope="row">{{this.date}}</th>
-            
+
 
             <td>
                 <button type="button" class="btn btn-secondary" id="{{this.product_id}}">Thêm</button>
-                <button type="button" class="btn btn-danger" id="{{this.product_id}}" value="{{this.product_id}}">Sửa</button>
+                <button type="button" class="btn btn-danger" id="{{this.product_id}}"
+                    value="{{this.product_id}}">Sửa</button>
                 <button type="button" class="btn btn-success" id="{{this.product_id}}"
                     value="{{this.product_id}}">Xóa</button>
             </td>
@@ -52,7 +53,7 @@
         $(".btn-success").click(function (e) {
             let position = $(this);
             let id = position.val();
-            
+
             $.ajax({
                 type: "DELETE",
                 url: "/product/delete/" + id,
@@ -61,5 +62,13 @@
                 }
             })
         });
+
+        //add
+        $(".btn-secondary").click(function (e) {
+            let position = $(this);
+            window.location.replace("/admin/addproduct");
+        });
     });
+
+
 </script>

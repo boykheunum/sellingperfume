@@ -71,6 +71,7 @@ exports.UpdateUser = (req, res) => {
         email: req.body.email,
         address: req.body.address,
         avatar: req.file.filename,
+        sex:req.body.sex,
 
     });
     user.UpdateUser(User, req.params.id, (error, data) => {

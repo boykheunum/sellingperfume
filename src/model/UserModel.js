@@ -83,9 +83,9 @@ Users.login = (username, password, result) => {
             result(null, res);
             return;
         }
-       
+        result({kind:"Not_found"},null);
      })
-      result({kind:"Not_found"},null);
+     
 }
 
 

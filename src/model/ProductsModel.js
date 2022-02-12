@@ -72,7 +72,7 @@ Products.SearchProductById = (id, result) => {
 }
 
 Products.SearchProductByName = (name, result) => {
-    db.query("SELECT * FROM products WHERE id=? AND AND state = ?", [name, 1],
+    db.query("SELECT * FROM products WHERE id=? AND state = ?", [name, 1],
         (err, res) => {
             if (err) {
                 result(err, null);
@@ -82,4 +82,13 @@ Products.SearchProductByName = (name, result) => {
         })
 }
 
+Products.SearchProductByNameRandom = (name, result) => {
+    db.query("SELECT * FROM products WHERE product_name LIKE ?", ['%' + name + '%'], (err, res) => {
+        if (err) {
+            result(err, null);
+            return;
+        }
+        result(null, res);
+    })
+}
 module.exports = Products;

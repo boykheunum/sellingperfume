@@ -131,6 +131,7 @@ exports.HomePage = (req, res) => {
         message: err.message || "Đã xảy ra một số lỗi",
       });
     } else {
+
       res.render('template/user/sanpham', { layout: 'main', data: data });
     }
   });
@@ -151,9 +152,9 @@ exports.chitietsanpham = (req, res) => {
 
 }
 
-exports.timkiemsanphamtheoten = (req,res) =>{
+exports.timkiemsanphamtheoten = (req, res) => {
   let name = req.body.product_name;
-  product.SearchProductByNameRandom(name,(err, data) => {
+  product.SearchProductByNameRandom(name, (err, data) => {
     if (err) {
       res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
         message: err.message || "Đã xảy ra một số lỗi",
@@ -162,8 +163,23 @@ exports.timkiemsanphamtheoten = (req,res) =>{
       res.render('template/user/timkiem', { layout: 'main', data: data });
     }
   });
- 
+
 }
 exports.LayoutCart = (req, res) => {
   res.render('template/user/giohang', { layout: 'main' });
+}
+
+exports.getclassifyproduct = (req, res) => {
+
+  product.ClassifyProduct(id, (err, data) => {
+
+    if (err) {
+      res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
+        message: err.message || "Đã xảy ra một số lỗi",
+      });
+    } else {
+      res.render('template/user/ploaisp', { layout: 'main', data: data });
+    }
+  });
+
 }

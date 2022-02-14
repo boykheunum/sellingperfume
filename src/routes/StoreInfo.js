@@ -10,8 +10,8 @@ module.exports = (app) => {
 
   //admin them 
   app.get("/admin/createinfo", storeInfoController.LayoutCreateInfo);
-   //admin  sua 
-   app.get('/admin/suattch/:id', storeInfoController.getId);
+  //admin  sua 
+  app.get('/admin/suattch/:id', storeInfoController.getId);
+  app.get('/getstoreinfo', storeInfoController.GetStoreForLayout);
 
-  
 };

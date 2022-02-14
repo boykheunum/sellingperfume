@@ -96,16 +96,28 @@ exports.DeleteStore = (req, res) => {
 exports.getId = (req, res) => {
   let id = req.params.id;
   res.render('template/admin/suainfo',
-      {
-          layout: 'mainadmin',
-          data: id
-      });
+    {
+      layout: 'mainadmin',
+      data: id
+    });
 }
 
 exports.LayoutCreateInfo = (req, res) => {
-  
-  res.render('template/admin/themttch',
-      {
-          layout: 'mainadmin',
+
+  res.render('template/admin/themttch', {
+    layout: 'mainadmin',
+  });
+}
+
+exports.GetStoreForLayout = (req, res) => {
+  storeInfo.GetAllStore((err, data) => {
+    if (err) {
+      res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
+        message: err.message || "Đã xảy ra một số lỗi ",
       });
+    } else {
+      res.send(data);
+    }
+  });
+
 }

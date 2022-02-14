@@ -9,6 +9,8 @@
     <title>Shop Homepage - Start Bootstrap Template</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="/src/views/static/user/assets/favicon.ico" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
@@ -31,25 +33,29 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">All Products</a></li>
+
+                        
+                        
+                        <!--<ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="category">
+                            <li><a class="dropdown-item" href="#">All Products</a></li>
                             <li>
                                 <hr class="dropdown-divider" />
                             </li>
                             <li><a class="dropdown-item" href="#!">Popular Items</a></li>
                             <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                         </ul>
+                -->
                     </li>
                 </ul>
-            
-                <div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" >
-                    <form style="display:flex; height:10%;"  action="/searchkey" method="POST" >
-                    <input type="search" class="form-control rounded" placeholder="Nhập tên sản phẩm" aria-label="Search" name="product_name"
-                        aria-describedby="search-addon" />
-                    <button type="button" class="btn btn-outline-primary">Tìm kiếm</button>
+
+                <div class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    <form style="display:flex; height:10%;" action="/searchkey" method="POST">
+                        <input type="search" class="form-control rounded" placeholder="Nhập tên sản phẩm"
+                            aria-label="Search" name="product_name" aria-describedby="search-addon" />
+
                     </form>
                 </div>
-               
+
                 <form class="d-flex">
 
                     <button class="btn btn-outline-dark" type="submit">
@@ -77,19 +83,65 @@
 
             {{{body}}}
 
-
         </div>
     </section>
     <!-- Footer-->
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Your Website 2021</p>
+    <footer class="bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!--Grid row-->
+            <div class="row">
+                <script>
+                    $(document).ready(function () {
+                        $.ajax({
+                            method: 'get',
+                            url: '/getstoreinfo',
+                            success: function (data) {
+                                console.log(data);
+                                $('#ft').html(`
+                                <h5 class="text-uppercase">THÔNG TIN CỬA HÀNG</h5>
+                                <div class="small mb-1" id="sdt"> Số điện thoại: `+ data[0].store_phone + `</div>
+                                <div class="small mb-1" id="email"> Emai: `+ data[0].store_email + `</div>
+                                <div class="small mb-1" id="diachi"> Địa chỉ: `+ data[0].store_address)
+                            }
+                        });
+                    });
+                </script>
+                <!--Grid column-->
+
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0" id="ft">
+
+
+                </div>
+
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                    <h5 class="text-uppercase">Footer text</h5>
+
+                    <p>
+
+                    </p>
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
         </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+
+            <a class="text-dark" href="#"></a>
+        </div>
+        <!-- Copyright -->
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="/src/views/static/user/js/scripts.js"></script>
 </body>
+
 
 </html>

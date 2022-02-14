@@ -81,6 +81,16 @@ Products.SearchProductByName = (name, result) => {
             result(null, res);
         })
 }
+Products.ClassifyProduct = (id, result) => {
+    db.query("SELECT * FROM products WHERE category_id=? AND state = ?", [id, 1],
+        (err, res) => {
+            if (err) {
+                result(err, null);
+                return;
+            }
+            result(null, res);
+        })
+}
 
 Products.SearchProductByNameRandom = (name, result) => {
     db.query("SELECT * FROM products WHERE product_name LIKE ?", ['%' + name + '%'], (err, res) => {

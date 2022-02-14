@@ -4,7 +4,7 @@ const CONTANTS = require('../database/contains');
 exports.getCategories = (req, res) => {
 
     categories.GetAllCategory((err, data) => {
-        console.log("Hello");
+        
         if (err) {
             res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
                 message: err.message || "Đã xảy ra một số lỗi",
@@ -103,4 +103,17 @@ exports.LayoutCreateCategory = (req, res) => {
         {
             layout: 'mainadmin',
         });
+}
+
+exports.getAllct = (req, res)=>{
+    categories.GetAllCategory((err, data) => {
+        
+        if (err) {
+            res.status(CONTANTS.STATUS_CODE.SERVER_ERROR).send({
+                message: err.message || "Đã xảy ra một số lỗi",
+            });
+        } else {
+            res.send(data)
+        }
+    });
 }

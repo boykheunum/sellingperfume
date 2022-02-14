@@ -15,4 +15,5 @@ module.exports = (app) => {
 
   //admin them
   app.get('/admin/createcategory', categoriesController.LayoutCreateCategory);
+  app.get('/getcategory', categoriesController.getAllct)
 }
